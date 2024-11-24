@@ -8,4 +8,6 @@ export interface Meals {
     lunch?: Food[];
     snack?: Food[];
     dinner?: Food[];
+    dessert?:Food [];
+    
 }

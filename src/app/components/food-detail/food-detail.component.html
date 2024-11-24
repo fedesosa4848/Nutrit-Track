@@ -4,9 +4,6 @@
       <div class="icon-container">
         <img *ngIf="foodRecived.image" [src]="foodRecived.image" alt="{{ foodRecived.name }}" />
         <p class="foodName">{{foodRecived.name}}</p>
-        <span class="color">
-          <p>{{foodRecived}}</p>
-        </span>
       </div>
     </div>
   
@@ -21,31 +18,35 @@
       <!-- Macros -->
       <div class="macros-container">
         <div class="macro">
-          <p class="cals">{{(foodRecived.caloriesPerGram * gramQuantity).toFixed(2)}} kcal</p>
           <span class="color">
             <p class="detail">🔥 calories</p>
           </span>
+          <p class="cals">{{(foodRecived.caloriesPerGram * gramQuantity).toFixed(2)}} kcal</p>
+          
         </div>
   
         <div class="macro">
-          <p class="cals">{{(foodRecived.proteins * gramQuantity).toFixed(2)}} gr</p>
           <span class="color">
             <p class="detail">🍗 proteins</p>
           </span>
+          <p class="cals">{{(foodRecived.proteins * gramQuantity).toFixed(2)}} gr</p>
+          
         </div>
   
         <div class="macro">
-          <p class="cals">{{(foodRecived.carbohydrates * gramQuantity).toFixed(2)}} gr</p>
           <span class="color">
             <p class="detail">🍞 carbs</p>
           </span>
+          <p class="cals">{{(foodRecived.carbohydrates * gramQuantity).toFixed(2)}} gr</p>
+          
         </div>
   
         <div class="macro">
-          <p class="cals">{{(foodRecived.fats * gramQuantity).toFixed(2)}} gr</p>
           <span class="color">
             <p class="detail">🥑 fats</p>
           </span>
+          <p class="cals">{{(foodRecived.fats * gramQuantity).toFixed(2)}} gr</p>
+          
         </div>
       </div>
     </div>

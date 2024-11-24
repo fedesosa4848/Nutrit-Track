@@ -37,7 +37,7 @@ export class AlimentosComponent{
 
   foodTypeSelected?: string;
 
-  isSearchByName: boolean = false;  // Variable de control para la búsqueda por nombre
+  isSearchByName: boolean = true;  // Variable de control para la búsqueda por nombre
 
 
   constructor(private _foodApi: FoodApiService) { }

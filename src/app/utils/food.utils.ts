@@ -7,10 +7,10 @@ export function transformFoodResponse(apiResponse: any): Food {
     id: foodData.foodId,
     name: foodData.label,
     caloriesPerGram: foodData.nutrients.ENERC_KCAL / 100 || 0,
-    carbohydrates: foodData.nutrients.CHOCDF || 0,
-    proteins: foodData.nutrients.PROCNT || 0,
-    fats: foodData.nutrients.FAT || 0,
-    gramQuantity: 100, // Por defecto 100 gramos
+    proteins: foodData.nutrients.PROCNT / 100 || 0,
+    fats: foodData.nutrients.FAT / 100 || 0,
+    carbohydrates: foodData.nutrients.CHOCDF / 100 || 0,
+    gramQuantity: 100, 
     foodDesc: foodData.foodContentsLabel || 'No description available',
     image: foodData.image || '', // Agregar la imagen aquí
   };
