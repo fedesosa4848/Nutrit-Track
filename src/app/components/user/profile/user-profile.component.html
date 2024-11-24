@@ -1,0 +1,36 @@
+<div class="container" *ngIf="user">
+    <!-- User Profile -->
+    <div class="meals">
+        <div class="user-profile">
+            <h2>{{ user.profile.firstName }} {{ user.profile.lastName }}'s Profile</h2>
+            <p>Email: {{ user.profile.email }}</p>
+            <p>Age: {{ user.profile.age }}</p>
+            <p>Weight: {{ user.profile.weight }} kg</p>
+            <p>Height: {{ user.profile.height }} cm</p>
+            <p>Gender: {{ user.profile.gender }}</p>
+
+            <!-- New fields -->
+            <p>Goal: {{ user.profile.goal }}</p>
+            <p>Activity Level: {{ user.profile.activityLevel }}</p>
+
+            <button [routerLink]="['/edit', user.id]" class="btn-edit">Edit</button>
+        </div>
+    </div>
+
+    <!-- Nutritional Data -->
+    <div class="graph">
+        <div class="nutrition-data">
+            <h3>Nutritional Data</h3>
+            <p><strong>BMR:</strong> {{ user.nutritionalData.bmr }} kcal</p>
+            <p><strong>TDEE:</strong> {{ user.nutritionalData.tdee }} kcal</p>
+            <p><strong>Calorie Goal:</strong> {{ user.nutritionalData.calorieGoal }} kcal</p>
+            <p><strong>Proteins:</strong> {{ user.nutritionalData.macronutrients.proteins }} g</p>
+            <p><strong>Carbohydrates:</strong> {{ user.nutritionalData.macronutrients.carbohydrates }} g</p>
+            <p><strong>Fats:</strong> {{ user.nutritionalData.macronutrients.fats }} g</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!user" class="no-profile-message">
+    <p>Failed to load user profile.</p>
+</div>

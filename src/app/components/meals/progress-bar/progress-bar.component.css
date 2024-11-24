@@ -1,0 +1,33 @@
+.progress-circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;  /* Tamaño ajustado para que coincida con el SVG más grande */
+    height: 250px; /* Tamaño ajustado para que coincida con el SVG más grande */
+    background: transparent;
+  }
+  
+  .progress-circle-background {
+    fill: none;
+    stroke: #4caf50;  /* Fondo de la barra */
+    stroke-width: 12;  /* Grosor de la barra */
+  }
+  
+  .progress-circle {
+    fill: none;
+    stroke: white;  /* Color de la barra de progreso */
+    stroke-width: 12;  /* Grosor de la barra */
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.5s ease;
+  }
+  
+  .progress-text {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    fill: white;
+    text-anchor: middle; 
+    font-weight: 600; 
+  }
+  

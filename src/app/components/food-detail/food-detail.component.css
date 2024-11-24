@@ -1,0 +1,28 @@
+/* food-container.component.css */
+.container {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.highlighted {
+  background-color: #f0f0f0;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.food-details {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+/* food-detail.component.css */
+.food-detail-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}

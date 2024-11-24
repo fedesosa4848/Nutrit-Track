@@ -1,0 +1,29 @@
+    .access-denied {
+        background: url('https://github.com/fedesosa4848/imagenes/raw/main/Leonardo_Phoenix_Create_a_stylized_futuristic_illustration_of_1.jpg') no-repeat center center;
+        background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+        background-position: center center;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden; /* Evita el scroll en los costados y abajo */
+        display: flex;
+        justify-content: center; /* Centra el modal horizontalmente */
+        align-items: center; /* Centra el modal verticalmente */
+        position: relative;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%; /* No deja que el modal se haga más ancho que la pantalla */
+        height: 100px; /* Puedes ajustar la altura del modal */
+        background-color: rgba(128, 128, 128, 0.7); /* Gris transparente */
+        color: rgba(0, 0, 0, 0.8); /* Tono negro menos oscuro */
+        text-align: center; /* Centra el texto */
+        padding: 10px;
+        position: absolute;
+        top: 30%;
+        left: 0;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center; /* Centra el texto horizontalmente */
+        align-items: center; /* Centra el texto verticalmente */
+    }

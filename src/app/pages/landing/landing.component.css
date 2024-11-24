@@ -1,0 +1,139 @@
+body {
+    background-image: url('https://github.com/faustofuertes/faustofuertes.github.io/blob/master/img/fondo.png?raw=true');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1; /* Añadir z-index para asegurarte de que el body esté por debajo del nav bar */
+}
+
+.container {
+    margin-left: 10%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 2; /* Este z-index debe estar por encima del body, pero debajo del nav bar */
+}
+
+/* Asegúrate de que tu nav bar tenga un z-index alto */
+app-nav-bar {
+    position: relative; /* Asegúrate de que tenga un contexto de apilamiento */
+    z-index: 10; /* Este z-index debe ser mayor que el de body y container */
+}
+
+.texto h1 {
+    font-size: 100px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.texto p {
+    font-size: 20px;
+}
+
+.container button {
+    height: 100px;
+    width: 250px;
+    background-color: #66BB6A;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    margin-left: 100px;
+    margin-bottom: 5%;
+    transition: background-color 0.5s, color 0.5s, transform 0.3s;
+}
+
+.container button:hover {
+    background-color: white;
+    border: 2px solid #66BB6A;
+    color: #66BB6A;
+    transform: scale(1.05);
+}
+
+.color {
+    color: #66BB6A;
+}
+
+@media(max-width:1520px){
+    .texto h1 {
+        font-size: 75px;
+        margin-top: 30px;
+        font-weight: 600;
+    }
+
+    .texto p {
+        font-size: 16px;
+    }
+}
+
+
+
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column; 
+        align-items: flex-start; 
+        margin-left: 5%; 
+        padding: 20px;
+    }
+
+    .texto h1 {
+        font-size: 60px;
+        line-height: 1.2;
+    }
+
+    .container button {
+        width: 200px; 
+        height: 80px; 
+        font-size: 20px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+        padding: 10px;
+        text-align: center; 
+    }
+
+    .texto h1 {
+        font-size: 50px;
+        margin: 20px 0;
+    }
+
+    .texto p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .container button {
+        width: 180px;
+        height: 60px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .texto h1 {
+        font-size: 40px; 
+    }
+
+    .texto p {
+        font-size: 12px;
+    }
+
+    .container button {
+        width: 150px;
+        height: 50px;
+        font-size: 16px;
+    }
+}

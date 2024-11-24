@@ -1,0 +1,87 @@
+<div class="container">
+    <h1>FAQ - NutriTrack</h1>
+
+
+    <!-- FAQ Sections -->
+    <div class="faq-section" id="question1">
+        <h2>What is NutriTrack and what is it used for?</h2>
+        <p>NutriTrack is a web app that allows users to manage their daily diet, providing detailed tracking of macronutrients and calories for the foods they consume. It is ideal for those who want to improve their diet, control weight, or achieve specific nutritional goals like weight loss or muscle gain.</p>
+    </div>
+
+    <div class="faq-section" id="question2">
+        <h2>How can I start using NutriTrack?</h2>
+        <p>Simply register on the platform, where you can create a profile and set your nutritional goals. Once registered, you can search for foods, add portions to your meals, and start monitoring your caloric and nutrient intake.</p>
+        <a (click)="toggleVideo('register')">Show Tutorial</a>
+        <div *ngIf="showRegisterVideo" class="video-container">
+            <video controls autoplay muted>
+                <source src="registro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div class="faq-section" id="question3">
+        <h2>What types of foods can I log in NutriTrack?</h2>
+        <p>NutriTrack uses a food data API to offer you a wide variety of options. You can search for specific foods by name and select the ones you want to include in your daily diet. The app displays detailed nutritional information for each food item.</p>
+    </div>
+
+    <div class="faq-section" id="question4">
+        <h2>Does the app automatically calculate nutrients?</h2>
+        <p>Yes, NutriTrack automatically calculates calories, proteins, carbohydrates, and fats based on the quantity of food you add to each meal, providing you with precise and detailed information on your daily intake.</p>
+    </div>
+
+    <div class="faq-section" id="question5">
+        <h2>How can I view my macronutrient distribution?</h2>
+        <p>In the visualization section, NutriTrack generates pie charts showing the distribution of proteins, carbohydrates, and fats in your meals, making it easier to track your nutritional goals visually.</p>
+    </div>
+
+    <div class="faq-section" id="question6">
+        <h2>Does NutriTrack offer health or exercise recommendations?</h2>
+        <p>No, NutriTrack is designed solely for tracking food and nutrients. It does not provide medical or exercise recommendations. Consult a health or nutrition professional for specific advice.</p>
+    </div>
+
+    <div class="faq-section" id="question7">
+        <h2>Can I manage multiple nutritional goals on the same account?</h2>
+        <p>Yes, you can create and manage multiple profiles with different goals, such as caloric deficit or muscle gain, allowing you to switch between goals according to your needs.</p>
+    </div>
+
+    <div class="faq-section" id="question8">
+        <h2>Is NutriTrack accessible on mobile devices?</h2>
+        <p>Yes, NutriTrack is a cross-platform web app that adapts to both mobile devices and desktop computers, so you can log and monitor your food intake anytime, anywhere.</p>
+    </div>
+
+    <div class="faq-section" id="question9">
+        <h2>What types of reports can I generate in NutriTrack?</h2>
+        <p>The app allows you to generate PDF reports on your daily or weekly meals, including a breakdown of calories and nutrients. These reports can be downloaded and shared.</p>
+    </div>
+
+    <div class="faq-section" id="question10">
+        <h2>Is there a maximum amount of grams I can enter per food item?</h2>
+        <p>Yes, for accuracy and control reasons, NutriTrack allows up to a maximum of 1,000 grams per food item in each entry.</p>
+    </div>
+
+    <div class="faq-section" id="question11">
+        <h2>Can I change the units of measurement for foods?</h2>
+        <p>Yes, NutriTrack offers the option to switch between grams and other units of measurement, like ounces, making logging easier according to your preferences.</p>
+    </div>
+
+    <div class="faq-section" id="question12">
+        <h2>What happens if I forget my password?</h2>
+        <p>NutriTrack has a password recovery feature on the login screen. Simply follow the instructions to restore access.</p>
+    </div>
+
+    <div class="faq-section" id="question13">
+        <h2>How does NutriTrack protect my personal data?</h2>
+        <p>NutriTrack follows security and data protection standards to ensure your personal information is safeguarded. You can access your information only when you log in with your account.</p>
+    </div>
+
+    <div class="faq-section" id="question14">
+        <h2>Are there any limitations for using NutriTrack?</h2>
+        <p>NutriTrack is designed for monitoring food and nutrient intake but does not log advanced medical information or specific health conditions. It is not a substitute for a professional medical consultation.</p>
+    </div>
+
+    <div class="faq-section" id="question15">
+        <h2>How can I contact NutriTrack support if I have issues or questions?</h2>
+        <p>You can reach the support team through the "Contact" section in the app, where you'll receive help to address your concerns.</p>
+    </div>
+</div>

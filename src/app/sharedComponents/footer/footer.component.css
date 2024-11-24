@@ -1,0 +1,85 @@
+/* Asegura que el contenedor principal cubra toda la altura disponible */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+}
+
+/* El contenedor de contenido (que tiene la lista y los botones) ocupará el espacio disponible */
+.container {
+  flex: 1; /* Esto permite que el contenedor se expanda y ocupe el espacio restante */
+  overflow-y: auto; /* Si el contenido excede la altura, aparecerá un scroll */
+  padding: 10px;
+  border: 2px dashed black;
+  border-radius: 30px;
+  width: 500px;
+  margin: auto;
+}
+
+/* Estilos del footer */
+.footer {
+  background-image: linear-gradient(155deg, #393540, #27232f);
+  color: #ecf0f1;
+  padding: 20px 0;
+  text-align: center;
+  z-index: 2;
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  width: 100%;
+  bottom: 0;
+  position: relative; /* El footer se mantiene al final del contenedor */
+}
+
+/* Estilos internos del footer */
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Otros estilos del footer */
+.footer-brand h2 {
+  font-size: 1.8em;
+  color: #66BB6A; /* Color de marca */
+  margin: 0;
+}
+
+.footer-links {
+  margin: 20px 0;
+}
+
+.footer-links a {
+  color: #ecf0f1;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #66BB6A; /* Hover color */
+}
+
+.footer-bottom {
+  font-size: 0.9em;
+  margin-top: 15px;
+  color: #95a5a6;
+}
+
+.footer-social a {
+  margin: 0 10px;
+  color: #ecf0f1;
+  font-size: 24px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-social a:hover {
+  color: #66BB6A;
+  transform: scale(1.1);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .footer {
+      padding: 15px;
+  }
+}

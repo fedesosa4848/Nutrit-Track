@@ -1,0 +1,41 @@
+<!-- Filtros por ingredientes específicos o alergias -->
+<h3 class="category-title">Ingredientes Específicos o Alergias</h3>
+<ul>
+    <li><a (click)="emitHealthLabel('peanut-free')">Peanut Free</a></li>
+    <li><a (click)="emitHealthLabel('tree-nut-free')">Tree Nut Free</a></li>
+    <li><a (click)="emitHealthLabel('soy-free')">Soy Free</a></li>
+    <li><a (click)="emitHealthLabel('dairy-free')">Dairy Free</a></li>
+    <li><a (click)="emitHealthLabel('gluten-free')">Gluten Free</a></li>
+    <li><a (click)="emitHealthLabel('wheat-free')">Wheat Free</a></li>
+    <li><a (click)="emitHealthLabel('egg-free')">Egg Free</a></li>
+    <li><a (click)="emitHealthLabel('fish-free')">Fish Free</a></li>
+    <li><a (click)="emitHealthLabel('shellfish-free')">Shellfish Free</a></li>
+    <li><a (click)="emitHealthLabel('crustacean-free')">Crustacean Free</a></li>
+    <li><a (click)="emitHealthLabel('sesame-free')">Sesame Free</a></li>
+    <li><a (click)="emitHealthLabel('mollusk-free')">Mollusk Free</a></li>
+    <li><a (click)="emitHealthLabel('milk-free')">Milk Free</a></li>
+</ul>
+
+<!-- Filtros por estilo de dieta o restricciones generales -->
+<h3 class="category-title">Estilos de Dieta</h3>
+<ul>
+    <li><a (click)="emitHealthLabel('paleo')">Paleo</a></li>
+    <li><a (click)="emitHealthLabel('pescatarian')">Pescatarian</a></li>
+    <li><a (click)="emitHealthLabel('kosher')">Kosher</a></li>
+    <li><a (click)="emitHealthLabel('pork-free')">Pork Free</a></li>
+    <li><a (click)="emitHealthLabel('red-meat-free')">Red Meat Free</a></li>
+</ul>
+
+<!-- Filtros relacionados con características nutricionales -->
+<h3 class="category-title">Características Nutricionales</h3>
+<ul>
+    <li><a (click)="emitHealthLabel('no-oil-added')">No Oil Added</a></li>
+    <li><a (click)="emitHealthLabel('no-sugar-added')">No Sugar Added</a></li>
+    <li><a (click)="emitHealthLabel('fat-free')">Fat Free</a></li>
+</ul>
+
+<!-- Filtros generales adicionales -->
+<h3 class="category-title">Restricciones Generales</h3>
+<ul>
+    <li><a (click)="emitHealthLabel('alcohol-free')">Alcohol Free</a></li>
+</ul>

@@ -1,0 +1,46 @@
+/* Estilos para las listas */
+ul {
+  list-style: none; /* Elimina los puntos de lista */
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Diseño adaptable */
+  gap: 15px; /* Espacio entre elementos */
+  margin: 20px auto; /* Espaciado entre categorías */
+  max-width: 800px; /* Limita el ancho del contenedor */
+}
+
+/* Estilos para los enlaces */
+a {
+  display: block; /* Asegura que el elemento ocupe todo el espacio disponible */
+  padding: 10px 15px;
+  background-color: #9acd32; /* Color de fondo */
+  color: white; /* Color del texto */
+  text-align: center;
+  text-decoration: none; /* Elimina subrayado */
+  border-radius: 8px; /* Bordes redondeados */
+  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombras para dar profundidad */
+}
+
+a:hover {
+  background-color: #7a9d23; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Mayor sombra */
+}
+
+/* Estilos para los encabezados de las categorías */
+ul + ul::before {
+  content: ''; /* Espaciado entre categorías */
+  display: block;
+  height: 10px;
+}
+
+/* Estilo opcional para títulos de categorías */
+.category-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 15px 0 5px; /* Espaciado entre títulos y listas */
+  color: #555; /* Color neutro */
+}

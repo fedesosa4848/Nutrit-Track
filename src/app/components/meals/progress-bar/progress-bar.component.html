@@ -1,0 +1,14 @@
+<div class="progress-circle-container">
+    <svg width="200" height="200" viewBox="0 0 120 120">
+      <!-- Fondo del círculo -->
+      <circle cx="60" cy="60" r="50" class="progress-circle-background"></circle>
+      <!-- Barra de progreso que cambia según el porcentaje -->
+      <circle cx="60" cy="60" r="50" 
+              class="progress-circle"
+              [style.stroke-dasharray]="circumference"
+              [style.stroke-dashoffset]="offset">
+      </circle>
+      <!-- Texto de porcentaje -->
+      <text x="60" y="60" class="progress-text">{{ progress | number:'1.0-0' }}%</text>
+    </svg>
+  </div>

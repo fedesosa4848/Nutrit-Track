@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="container" (click)="emitFoodClick()">
+  <ng-container>
+    <div class="name-flag">
+      <div class="food-name-flag">
+        <p>{{ foodRecived.name }}</p>
+      </div>
+      <div class="cals-gr">
+        <p>{{ (foodRecived.caloriesPerGram * foodRecived.gramQuantity).toFixed(2) }} kcal</p>
+        <span class="greyColor">
+          <p>{{ foodRecived.gramQuantity }} gr.</p>
+        </span>
+      </div>
+    </div>
+
+    <!-- Botón para mostrar detalles -->
+    <button (click)="toggleDetails()">
+        {{ isDetailVisible ? 'Ocultar' : 'Ver Detalles' }}
+      </button>
+
+    <!-- Condición para mostrar los detalles del alimento -->
+    <div *ngIf="isDetailVisible" class="food-details">
+      <app-food-detail [foodRecived]="foodRecived"></app-food-detail>  <!-- Componente FoodDetail -->
+    </div>
+  </ng-container>
+</div>

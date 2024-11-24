@@ -1,0 +1,264 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    /* Incluye el padding y el border en el tamaño total de los elementos */
+}
+
+body {
+    background-image: url('img/fondo.png');
+    /* Ruta de la imagen */
+    background-size: cover;
+    /* Escala la imagen para cubrir toda la página */
+    background-position: center;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    height: 100vh;
+    /* Hace que el fondo cubra toda la altura visible de la página */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* Establece un contexto de apilamiento para los elementos hijos */
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    /* sombra con difuminado */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    /* Añadido para contexto de apilamiento */
+    z-index: 2;
+    /* Asegura que el header esté por encima de la imagen */
+}
+
+.icono-principal {
+    height: 250PX;
+    margin-right: auto;
+    margin-left: 100px;
+}
+
+.btn-empezar {
+    padding: 10px;
+    color: white;
+    background-color: #66BB6A;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 8px;
+    height: 55px;
+    width: 165px;
+    margin: 15px;
+    transition: background-color 0.5s, color 0.5s, transform 0.3s;
+    /* Transiciones ajustadas */
+    position: relative;
+    /* Añadido para contexto de apilamiento */
+    z-index: 2;
+    /* Asegura que el botón esté por encima de la imagen */
+}
+
+.btn-empezar:hover {
+    background-color: white;
+    border: 2px solid #66BB6A;
+    color: #66BB6A;
+    transform: scale(1.05);
+    /* Aumento sutil del tamaño */
+}
+
+.icono-login{
+    margin: 10px;
+}
+
+.header a{
+    margin-right: 15px;
+    cursor: pointer;
+    transition: .3s;
+    text-decoration: none;
+    color: black;
+}
+
+.header a:hover{
+    color:  #66BB6A;
+}
+
+
+.container {
+    margin-left: 10%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /* Cambia a fila por defecto */
+    justify-content: flex-start;
+    /* Alinea elementos al inicio */
+    position: relative;
+    /* Añadido para contexto de apilamiento */
+    z-index: 2;
+    /* Asegura que la container esté por encima de la imagen */
+}
+
+.texto h1 {
+    font-size: 100px;
+    margin-bottom: 10px;
+}
+
+.texto p {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.container button {
+    height: 100px;
+    width: 250px;
+    background-color: #66BB6A;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    margin-left: 100px;
+    margin-bottom: 5%;
+    transition: background-color 0.5s, color 0.5s, transform 0.3s;
+    /* Transiciones ajustadas */
+}
+
+.container button:hover {
+    background-color: white;
+    border: 2px solid #66BB6A;
+    color: #66BB6A;
+    transform: scale(1.05);
+    /* Aumento sutil del tamaño */
+}
+
+.color {
+    color: #66BB6A;
+    /* Cambia el color de la palabra */
+}
+
+/* RESPONSIVE */
+@media (max-width: 1366px) {
+    .texto h1 {
+        font-size: 80px;
+        margin-top: 3%;
+    }
+
+    .texto p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .texto h1 {
+        font-size: 80px;
+    }
+
+    .container {
+        margin-left: 5%;
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        height: 70px;
+    }
+
+    .btn-empezar {
+        font-size: 16px;
+        /* Ajustar tamaño de fuente en botones */
+        height: 50px;
+        width: 150px;
+    }
+
+    .container {
+        flex-direction: column;
+        /* Cambiar a columna en pantallas medianas */
+        align-items: center;
+        /* Centrar elementos */
+        margin-left: 0;
+        /* Eliminar margen izquierdo */
+    }
+
+    .texto h1 {
+        font-size: 70px;
+        /* Reducir tamaño de fuente en pantallas medianas */
+    }
+
+    .texto p {
+        font-size: 18px;
+        /* Reducir tamaño de fuente en párrafos */
+    }
+
+    .container button {
+        width: 80%;
+        /* Hacer botones más anchos en pantallas medianas */
+        margin-left: 0;
+        /* Eliminar margen izquierdo */
+        margin-bottom: 20px;
+        /* Espacio entre botones */
+    }
+}
+
+@media (max-width: 768px) {
+
+    .header {
+        height: 60px;
+        /* Ajustar altura del header en móvil */
+    }
+
+    .btn-empezar {
+        font-size: 14px;
+        /* Ajustar tamaño de fuente en botones */
+        height: 45px;
+        width: 130px;
+    }
+
+    .texto h1 {
+        font-size: 50px;
+        /* Reducir tamaño de fuente en pantallas pequeñas */
+    }
+
+    .texto p {
+        font-size: 16px;
+        /* Reducir tamaño de fuente en párrafos */
+    }
+
+    .container button {
+        width: 90%;
+        /* Botones ocupan el 90% del ancho en móvil */
+        height: 80px;
+        /* Ajustar altura del botón */
+    }
+}
+
+@media (max-width: 576px) {
+    .container button {
+        height: 70px;
+        margin: 20px;
+    }
+
+    .header{
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 420px) {
+    body {
+        background-image: url('img/fondoMobile.png');
+    }
+
+    .container button {
+        height: 70px;
+        margin: 20px;
+    }
+
+    .header{
+        display: flex;
+        justify-content: space-around;
+    }
+}

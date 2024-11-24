@@ -1,0 +1,22 @@
+
+<app-barra-buscadora-comidas (foodNameEmitter)="searchFoodByName($event)"></app-barra-buscadora-comidas>
+
+
+<div class="food-container" *ngIf="arrayFoods.length > 0">
+    <app-food-container 
+        *ngFor="let f of arrayFoods; trackBy: trackByFn"
+        [foodRecived]="f"
+        (foodEmitter)="foodReciber($event)"
+        >
+    </app-food-container>
+</div>
+
+<!-- Paginación solo cuando la búsqueda sea por health label -->
+<div class="pagination-controls" *ngIf="!isSearchByName">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{currentPage}} de {{totalPages}}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+  </div>
+
+<app-healthlabel (healthEmitter)="onHealthLabelSelected($event)"></app-healthlabel>
+
