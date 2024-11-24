@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { MealsService } from '../../../services/meals.service';
-
+import { MealService } from '../../../services/meal.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -20,7 +19,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private _myMealsService: MealsService) {
+    private _myMealsService: MealService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -33,8 +32,9 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe(success => {
         if (success) {
           const userToken = localStorage.getItem('userToken')
+          const loginDate = localStorage.getItem('loginDate');
           this.router.navigate(['/userProfile']); // Redirigir a la página protegida
-          this._myMealsService.loadMeals(userToken).subscribe()
+          if(userToken && loginDate)this._myMealsService.getMealsByUserId(userToken,loginDate).subscribe()
         } else {
           this.loginFailed = true; // Mostrar mensaje de error
         }

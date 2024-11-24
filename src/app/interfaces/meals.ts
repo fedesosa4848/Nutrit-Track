@@ -1,6 +1,6 @@
 import { Food } from "./food";
 
-export interface Meals {
+export interface Meal {
     id?: string;
     idUser: string | null | undefined;
     date: string | null | undefined;

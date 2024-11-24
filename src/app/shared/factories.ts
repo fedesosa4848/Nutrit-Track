@@ -2,7 +2,7 @@ import { Food } from '../interfaces/food';
 
 export function createEmptyFood(): Food {
   return {
-    id: 0, // o un valor inicial que consideres adecuado, 0 puede indicar que aún no tiene ID
+    id: '', // o un valor inicial que consideres adecuado, 0 puede indicar que aún no tiene ID
     name: '', // Nombre vacío
     caloriesPerGram: 0, // Calorías por gramo en 0
     carbohydrates: 0, // Carbohidratos en 0

@@ -1,37 +1,17 @@
-<div class="main-container">
-    <div class="container">
-        <div class="buttons">
-            <button class="add-button" (click)="emitAddMode()">
-                <i class="fas fa-plus"></i>
-            </button>
-            <label class="totalCalories">{{(totalCalories).toFixed(2)}} kcals.</label>
-            <button (click)="editMode = false" (click)="toggleExpand()" class="chevron-button" [ngClass]="{'rotate': isExpanded}">
-                <i class="fas" [ngClass]="isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-            </button>
+<div class="meal-info">
+    <h3>{{ meal?.date }}</h3> <!-- Fecha de la comida -->
+  
+    <div class="foods">
+      <div *ngFor="let food of meal?.breakfast || []">
+        <div *ngIf="meal?.breakfast">
+            {{ food.name }} ({{ food.gramQuantity }}g)
         </div>
-
-        <!-- Contenido edit mode -->
-        <div class="editMode" *ngIf="editMode">
-            <button (click)="toggleEditMode()" class="btn-cancel"><i class="fas fa-times"></i></button>
-            <input name="newQuantity" [(ngModel)]="newGramQuantity" type="number" [min]="0">
-            <button (click)="emitFoodModified()" (click)="toggleEditMode()" class="btn-ok"><i class="fas fa-check"></i></button>
-        </div>
-
-        <!-- Lista de alimentos -->
-        <div class="food-list" [ngClass]="{'expanded': isExpanded}">
-            <div *ngIf="isExpanded">
-                <div *ngFor="let f of arrayFood">
-                    <div class="food-item">
-                        <app-food-container ></app-food-container>
-                        <button class="btn-delete" (click)="emitMealType()" (click)="emitDelete(f)">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <button (click)="emitMealType()" (click)="toggleEditMode()" (click)="saveFoodToUpdate(f)" class="btn-edit">
-                            <i class="fas fa-pencil-alt"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div *ngFor="let food of meal?.lunch || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
+      <div *ngFor="let food of meal?.snack || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
+      <div *ngFor="let food of meal?.dinner || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
+      <div *ngFor="let food of meal?.dessert || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
     </div>
-    
+
+  </div>
+  

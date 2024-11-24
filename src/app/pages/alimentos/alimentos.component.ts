@@ -6,7 +6,7 @@ import { FoodApiService } from '../../services/food-api.service';
 import { FoodDetailComponent } from '../../components/food-detail/food-detail.component';
 import { CommonModule } from '@angular/common';
 import { HealthlabelComponent } from "../../components/food/healthlabel/healthlabel.component";
-
+import { createEmptyFood } from '../../shared/factories';
 @Component({
   selector: 'app-alimentos',
   standalone: true,
@@ -15,6 +15,8 @@ import { HealthlabelComponent } from "../../components/food/healthlabel/healthla
   styleUrl: './alimentos.component.css'
 })
 export class AlimentosComponent{
+
+  
 
   //Este string nos llegara desde el componente de la barra de busqueda que emite dicho string
   foodNameRecived?: string;
@@ -26,7 +28,7 @@ export class AlimentosComponent{
   arrayFoods: Food[] = [];
 
   //
-  foodSelected: Food = { id: 0, name: '', caloriesPerGram: 0, carbohydrates: 0, proteins: 0, fats: 0, gramQuantity: 0 };
+  foodSelected: Food = createEmptyFood();
 
 
   healthLabel: string = '';  // Aquí se almacenará el health label seleccionado

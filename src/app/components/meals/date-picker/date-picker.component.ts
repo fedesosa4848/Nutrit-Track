@@ -1,51 +1,56 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-date-picker',
   standalone: true,
-  imports: [],
+  imports:[CommonModule],
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.css']
 })
 export class DatePickerComponent implements OnInit {
 
   @Output() datePickedEmitter = new EventEmitter();
-  date: string | null = '';
+  date: string = '';
+  currentDate: string = '';
+  maxDate: string = ''; // Fecha máxima (7 días adelante)
+  minDate: string = ''; // Fecha mínima (30 días atrás)
+  errorMessage: string = ''; // Mensaje de error
 
   ngOnInit(): void {
-    this.date = localStorage.getItem('loginDate') || this.getCurrentDate();
+    this.currentDate = this.getCurrentDate();
+    this.maxDate = this.addOrSubtractDays(this.currentDate, 7); // 7 días adelante
+    this.minDate = this.addOrSubtractDays(this.currentDate, -30); // 30 días atrás
+    this.date = localStorage.getItem('loginDate') || this.currentDate;
   }
 
   emitDate() {
+    console.log('Emitiendo la fecha:', this.date);  // Mensaje de depuración
     this.datePickedEmitter.emit(this.date);
   }
 
   plusOneDay() {
-    // if (this.date) {
-    //   this.date = this.addOrSubtractDays(this.date, 1);
-    //   this.emitDate();
-    // }
+    const nextDate = this.addOrSubtractDays(this.date, 1);
 
-    //lo cambie para que no pueda avanzar para adelante , si algun problema se vuelve a lo que esta comentado
-
-    if (this.date) {
-      const currentDate = this.getCurrentDate();
-      const nextDate = this.addOrSubtractDays(this.date, 1);
-
-
-      if (nextDate <= currentDate) {
-        this.date = nextDate;
-        this.emitDate();
-      }
+    // Verificamos si la fecha se encuentra dentro del rango permitido
+    if (nextDate > this.maxDate) {
+      this.errorMessage = 'No puedes avanzar más de 7 días desde la fecha actual.';
+    } else {
+      this.errorMessage = '';
+      this.date = nextDate;
+      this.emitDate();
     }
   }
 
-
-
-
   minusOneDay() {
-    if (this.date) {
-      this.date = this.addOrSubtractDays(this.date, -1);
+    const prevDate = this.addOrSubtractDays(this.date, -1);
+
+    // Verificamos si la fecha se encuentra dentro del rango permitido
+    if (prevDate < this.minDate) {
+      this.errorMessage = 'No puedes retroceder más de 30 días desde la fecha actual.';
+    } else {
+      this.errorMessage = '';
+      this.date = prevDate;
       this.emitDate();
     }
   }

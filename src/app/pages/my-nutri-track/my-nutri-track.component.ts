@@ -1,89 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { MealListComponent } from "../../components/meals/meal-list/meal-list.component";
-import { BarraBuscadoraComidasComponent } from '../../components/barra-buscadora-comidas/barra-buscadora-comidas.component';
-import { FoodContainerComponent } from '../../components/food-container/food-container.component';
-import { FoodApiService } from '../../services/food-api.service';
-import { Food } from '../../interfaces/food';
-import { FormsModule } from '@angular/forms';
-import { MealsService } from '../../services/meals.service';
+import { Meal } from '../../interfaces/meals';
+import { MealService } from '../../services/meal.service';
 import { DatePickerComponent } from "../../components/meals/date-picker/date-picker.component";
-import { lastValueFrom } from 'rxjs';
-import { MealStatisticsComponent } from "../../components/meals/meal-statistics/meal-statistics.component";
 
 @Component({
   selector: 'app-my-nutri-track',
   standalone: true,
-  imports: [MealListComponent, BarraBuscadoraComidasComponent, FoodContainerComponent, FormsModule, DatePickerComponent, MealStatisticsComponent],
+  imports: [MealListComponent, DatePickerComponent],
   templateUrl: './my-nutri-track.component.html',
   styleUrl: './my-nutri-track.component.css'
 })
-export class MyNutriTrackComponent  {
-  addMode = false; //muestra o no el modo add-food
-  arrayFoods?: Food[]; //array food q se usa en el addMode
-  foodToAdd: Food = { id: 0, name: '', caloriesPerGram: 0, carbohydrates: 0, proteins: 0, fats: 0, gramQuantity: 0 }; //comida seleccionada para agregar
-  foodQuantity: number = 0; //cantidad de comida seleccionada para agregar
-  mealTypeRecived?: 'breakfast' | 'lunch' | 'snack' | 'dinner'; //mealType q se recibe de meal-list
-  mealIdRecived?: number; //mealId que se recibe del meal-list
-  dateRecivedFromDP?: string; //date que recibimos del datePicker (DP)
+export class MyNutriTrackComponent implements OnInit, OnChanges {
+  meals: Meal[] = [];
+  
+  @Input()
+  dateRecivedFromDP: string = ''; // Date que recibimos del DatePicker (DP)
 
-  constructor(private _myFoodService: FoodApiService, private _myMealService: MealsService) { }
+  constructor(private mealService: MealService) {}
 
-  //llena el arrayFoods de todas las foods que coinciden con el foodName que se ingreso en el componenteBuscador
-  foodNameReciver(foodName: string) {
-    this._myFoodService.searchFoodByName(foodName).subscribe(data => {
-      this.arrayFoods = data;
-    })
+  ngOnInit(): void {
+    this.loadMeals(); // Cargar las comidas cuando el componente se inicializa
   }
 
-  //recibe la food seleccionada y le asigna la cantidad de gramos que se eligieron
-  foodReciver(foodSelected: Food) {
-    this.foodToAdd = foodSelected
-  }
-
-  //recibe de meal-list la mealType
-  mealTypeReciver(mealType: 'breakfast' | 'lunch' | 'snack' | 'dinner') {
-    this.mealTypeRecived = mealType;
-  }
-
-  //recibe de meal-list la mealId
-  mealIdReciver(mealId: number) {
-    this.mealIdRecived = mealId;
-  }
-
-  dateReciver(date: string) {
-    this.dateRecivedFromDP = date;
-  }
-
-  //activa o desactiva el add-food-mode
-  changeAddMode() {
-    this.addMode = !this.addMode;
-  }
-
-  addFoodToMeal() {
-    // Validación para asegurarse de que foodToAdd y foodQuantity son válidos
-    if (!this.foodToAdd || !this.foodToAdd.id) {
-      alert("Please select a valid food.");
-      return;
+  ngOnChanges(changes: SimpleChanges): void {
+    // Si hay cambios en la fecha (por ejemplo, si el usuario seleccionó otra fecha), recargamos
+    if (changes['dateRecivedFromDP']) {
+      this.loadMeals();
     }
-  
-    if (this.foodQuantity <= 0 || isNaN(this.foodQuantity)) {
-      alert("Please enter a valid quantity greater than 0.");
-      return;
-    }
-  
-    this.foodToAdd.gramQuantity = this.foodQuantity;
-  
-    lastValueFrom(
-      this._myMealService.addFoodToMeal(this.mealIdRecived, this.foodToAdd, this.mealTypeRecived)
-    )
-      .then(() => {
-        console.log("Food added successfully");  // Verifica que el código entre en este bloque
-        // Recargar la página una vez que la adición se complete
-        window.location.reload();
-      })
-      .catch(error => {
-        console.error('Error al añadir la comida:', error);
+  }
+
+  // Método para cargar las comidas del usuario, filtrando por fecha
+  loadMeals(): void {
+    const userId = localStorage.getItem('userToken');
+    if (userId && this.dateRecivedFromDP) {
+      // Llamamos al servicio para obtener las comidas filtradas por usuario y fecha
+      this.mealService.getMealsByUserId(userId, this.dateRecivedFromDP).subscribe((meals) => {
+        this.meals = meals; // Guardamos las comidas filtradas en el estado del componente
+        console.log('Comidas filtradas por fecha:', meals); // Depuración para ver las comidas filtradas
       });
+    } else {
+      console.log('Faltan datos para cargar las comidas: userId o date');
+    }
   }
-  
+
+  // Método que se llama cuando se recibe una nueva fecha del DatePicker
+  dateRecived(date: string): void {
+    console.log('Fecha recibida:', date); // Depuración para ver la fecha recibida
+    this.dateRecivedFromDP = date;
+    this.loadMeals(); // Recargar las comidas al recibir una nueva fecha
+  }
 }
