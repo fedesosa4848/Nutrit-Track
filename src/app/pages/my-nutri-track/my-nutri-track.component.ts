@@ -3,7 +3,7 @@ import { MealListComponent } from "../../components/meals/meal-list/meal-list.co
 import { Meal } from '../../interfaces/meals';
 import { MealService } from '../../services/meal.service';
 import { DatePickerComponent } from "../../components/meals/date-picker/date-picker.component";
-
+import { createEmptyMeal } from '../../shared/factories';
 @Component({
   selector: 'app-my-nutri-track',
   standalone: true,
@@ -15,11 +15,12 @@ export class MyNutriTrackComponent implements OnInit, OnChanges {
   meals: Meal[] = [];
   
   @Input()
-  dateRecivedFromDP: string = ''; // Date que recibimos del DatePicker (DP)
+  dateRecivedFromDP: string = ''; // Fecha seleccionada o inicial
 
   constructor(private mealService: MealService) {}
 
   ngOnInit(): void {
+    this.initializeDate(); // Inicializa la fecha antes de cargar las comidas
     this.loadMeals(); // Cargar las comidas cuando el componente se inicializa
   }
 
@@ -30,19 +31,36 @@ export class MyNutriTrackComponent implements OnInit, OnChanges {
     }
   }
 
+  // Método para inicializar la fecha con un valor válido
+  private initializeDate(): void {
+    const storedDate = localStorage.getItem('loginDate'); // Intenta obtener la fecha guardada
+    if (storedDate) {
+      this.dateRecivedFromDP = storedDate;
+    } else {
+      const today = new Date();
+      this.dateRecivedFromDP = today.toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
+    }
+    console.log('Fecha inicial:', this.dateRecivedFromDP); // Depuración
+  }
+
   // Método para cargar las comidas del usuario, filtrando por fecha
   loadMeals(): void {
     const userId = localStorage.getItem('userToken');
     if (userId && this.dateRecivedFromDP) {
-      // Llamamos al servicio para obtener las comidas filtradas por usuario y fecha
       this.mealService.getMealsByUserId(userId, this.dateRecivedFromDP).subscribe((meals) => {
-        this.meals = meals; // Guardamos las comidas filtradas en el estado del componente
-        console.log('Comidas filtradas por fecha:', meals); // Depuración para ver las comidas filtradas
+        if (meals.length === 0) {
+          // Si no hay comidas para la fecha, creamos una vacía
+          const emptyMeal = this.mealService.createEmptyMeal(this.dateRecivedFromDP, userId);
+          this.meals = [emptyMeal];
+        } else {
+          this.meals = meals;
+        }
       });
     } else {
       console.log('Faltan datos para cargar las comidas: userId o date');
     }
   }
+  
 
   // Método que se llama cuando se recibe una nueva fecha del DatePicker
   dateRecived(date: string): void {

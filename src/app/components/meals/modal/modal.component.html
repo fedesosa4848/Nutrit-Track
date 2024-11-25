@@ -1,0 +1,8 @@
+<div class="modal">
+    <div class="modal-content">
+      <h3>Add Food to {{ typeMeal | titlecase }}</h3>
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Search food..." />
+      <button (click)="addFood()">Add</button>
+      <button (click)="closeModal()">Cancel</button>
+    </div>
+  </div>

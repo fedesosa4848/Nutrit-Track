@@ -16,6 +16,32 @@ export class MealService {
     this.loadMeals(); // Cargar las comidas al inicializar el servicio
   }
 
+  createEmptyMeal(date: string, userId: string): Meal {
+    return {
+      id: '', // Esto puede ser generado por el backend o un UUID temporal
+      idUser: userId,
+      date: date,
+      breakfast: [],
+      lunch: [],
+      snack: [],
+      dinner: [],
+      dessert: []
+    };
+  }
+
+  // Método para agregar una comida al backend (si aún no existe)
+postMealToBackend(meal: Meal): Observable<Meal> {
+  return this.http.post<Meal>(this.API_URL, meal).pipe(
+    map((newMeal) => {
+      const updatedMeals = [...this.mealsSubject.value, newMeal];
+      this.mealsSubject.next(updatedMeals); // Actualizamos el estado local
+      return newMeal;
+    })
+  );
+}
+
+
+
   // Cargar las comidas del usuario desde el backend
   private loadMeals(): void {
     const userId = localStorage.getItem('userId'); // Obtener el idUser del localStorage
@@ -49,29 +75,40 @@ export class MealService {
   }
   
   // Agregar un alimento a una comida
-  addFoodToMeal(mealId: string, typeMeal: string, food: Food, grams: number): Observable<Meal> {
-    // Obtenemos la comida correspondiente
+  addFoodToMeal(mealId: string | undefined, typeMeal: string, food: Food, grams: number): Observable<Meal> {
     const currentMeals = this.mealsSubject.value;
-    const mealToUpdate = currentMeals.find((meal) => meal.id === mealId);
+    let mealToUpdate = currentMeals.find((meal) => meal.id === mealId);
   
     if (!mealToUpdate) {
       throw new Error('Meal not found');
     }
   
-    // Creamos una copia de la comida actualizada
+    // Si la comida no tiene ID, primero la guardamos en el backend
+    if (!mealToUpdate.id) {
+      return this.postMealToBackend(mealToUpdate).pipe(
+        switchMap((newMeal) => {
+          mealToUpdate = newMeal;
+          return this.updateMealWithFood(newMeal, typeMeal, food, grams);
+        })
+      );
+    } else {
+      return this.updateMealWithFood(mealToUpdate, typeMeal, food, grams);
+    }
+  }
+
+  private updateMealWithFood(meal: Meal, typeMeal: string, food: Food, grams: number): Observable<Meal> {
     const updatedMeal: Meal = {
-      ...mealToUpdate,
+      ...meal,
       [typeMeal]: [
-        ...(mealToUpdate[typeMeal as keyof Meal] || []),
-        { ...food, gramQuantity: grams },
-      ],
+        ...(meal[typeMeal as keyof Meal] || []),
+        { ...food, gramQuantity: grams }
+      ]
     };
   
-    // Realizamos la actualización en el backend
-    return this.http.put<Meal>(`${this.API_URL}/${mealId}`, updatedMeal).pipe(
-      map(() => {
-        this.loadMeals(); // Actualizamos el estado local después de modificar
-        return updatedMeal;
+    return this.http.put<Meal>(`${this.API_URL}/${meal.id}`, updatedMeal).pipe(
+      map((updated) => {
+        this.loadMeals(); // Recargar comidas localmente
+        return updated;
       })
     );
   }

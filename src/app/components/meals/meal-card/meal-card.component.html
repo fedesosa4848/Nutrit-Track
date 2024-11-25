@@ -1,17 +1,29 @@
 <div class="meal-info">
-    <h3>{{ meal?.date }}</h3> <!-- Fecha de la comida -->
-  
+  <div *ngIf="meal">
+    <h3>{{ meal.date }}</h3>
+
     <div class="foods">
-      <div *ngFor="let food of meal?.breakfast || []">
-        <div *ngIf="meal?.breakfast">
+      <div *ngFor="let type of mealTypes">
+        <h4>{{ type | titlecase }}</h4>
+        <div *ngIf="meal && meal[type] && meal[type].length > 0; else noFoods">
+          <div *ngFor="let food of meal[type]">
             {{ food.name }} ({{ food.gramQuantity }}g)
+          </div>
         </div>
+        <ng-template #noFoods>
+          <p>No foods added</p>
+        </ng-template>
+        <h2>HOLA QUE HACE</h2>
+        <button (click)="openModal(type)">Add Food</button>
       </div>
-      <div *ngFor="let food of meal?.lunch || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
-      <div *ngFor="let food of meal?.snack || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
-      <div *ngFor="let food of meal?.dinner || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
-      <div *ngFor="let food of meal?.dessert || []">{{ food.name }} ({{ food.gramQuantity }}g)</div>
     </div>
 
+    <app-modal
+      *ngIf="selectedTypeMeal"
+      [mealId]="meal.id"
+      [typeMeal]="selectedTypeMeal"
+      (foodSelected)="onFoodAdded($event)"
+      (modalClosed)="closeModal()"
+    ></app-modal>
   </div>
-  
+</div>

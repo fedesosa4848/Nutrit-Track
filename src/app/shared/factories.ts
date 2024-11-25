@@ -1,5 +1,5 @@
 import { Food } from '../interfaces/food';
-
+import { Meal } from '../interfaces/meals';
 export function createEmptyFood(): Food {
   return {
     id: '', // o un valor inicial que consideres adecuado, 0 puede indicar que aún no tiene ID
@@ -12,4 +12,19 @@ export function createEmptyFood(): Food {
     foodDesc: '', // Descripción vacía (opcional)
     image: '', // Imagen vacía (opcional)
   };
+}
+
+
+
+export function createEmptyMeal(userId: string , date: string ): Meal {
+    return {
+        id: '',
+        idUser: userId,
+        date: date,
+        breakfast: [],
+        lunch: [],
+        snack: [],
+        dinner: [],
+        dessert: []
+    };
 }
