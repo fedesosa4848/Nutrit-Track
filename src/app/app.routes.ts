@@ -12,7 +12,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { authGuard } from './auth.guard';
-import { FoodDetailComponent } from './components/food-detail/food-detail.component';
+import { FoodDetailComponent } from './components/food/food-detail/food-detail.component';
 
 export const routes: Routes = [
     { path: 'alimentos', component: AlimentosComponent },

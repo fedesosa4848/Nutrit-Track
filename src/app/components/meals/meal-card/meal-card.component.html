@@ -13,17 +13,16 @@
         <ng-template #noFoods>
           <p>No foods added</p>
         </ng-template>
-        <h2>HOLA QUE HACE</h2>
         <button (click)="openModal(type)">Add Food</button>
       </div>
     </div>
 
     <app-modal
-      *ngIf="selectedTypeMeal"
-      [mealId]="meal.id"
-      [typeMeal]="selectedTypeMeal"
-      (foodSelected)="onFoodAdded($event)"
-      (modalClosed)="closeModal()"
-    ></app-modal>
+    *ngIf="selectedTypeMeal"
+    [mealId]="meal.id"
+    [typeMeal]="selectedTypeMeal"
+    (foodsSelected)="addFoodsToMeal($event)"
+    (modalClosed)="closeModal()">
+  </app-modal>
   </div>
 </div>

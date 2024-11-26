@@ -1,8 +1,16 @@
 <div class="modal">
-    <div class="modal-content">
-      <h3>Add Food to {{ typeMeal | titlecase }}</h3>
-      <input type="text" [(ngModel)]="searchQuery" placeholder="Search food..." />
-      <button (click)="addFood()">Add</button>
-      <button (click)="closeModal()">Cancel</button>
+  <div class="modal-content">
+    <h3>Add Food to {{ typeMeal | titlecase }}</h3>
+    <app-barra-buscadora-comidas (foodNameEmitter)="searchFoodByName($event)"></app-barra-buscadora-comidas>
+    <div class="results" *ngIf="arrayFoods.length > 0">
+      <app-food-container
+        *ngFor="let f of arrayFoods"
+        [foodRecived]="f"
+        [addMode]="true"
+        (selectionChanged)="handleSelection($event)">
+      </app-food-container>
     </div>
+    <button (click)="addFoods()">Add Selected</button>
+    <button (click)="closeModal()">Cancel</button>
   </div>
+</div>

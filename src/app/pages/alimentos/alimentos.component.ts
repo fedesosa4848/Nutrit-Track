@@ -1,9 +1,9 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { BarraBuscadoraComidasComponent } from "../../components/barra-buscadora-comidas/barra-buscadora-comidas.component";
-import { FoodContainerComponent } from "../../components/food-container/food-container.component";
+import { FoodContainerComponent } from "../../components/food/food-container/food-container.component";
 import { Food } from '../../interfaces/food';
 import { FoodApiService } from '../../services/food-api.service';
-import { FoodDetailComponent } from '../../components/food-detail/food-detail.component';
+import { FoodDetailComponent } from '../../components/food/food-detail/food-detail.component';
 import { CommonModule } from '@angular/common';
 import { HealthlabelComponent } from "../../components/food/healthlabel/healthlabel.component";
 import { createEmptyFood } from '../../shared/factories';

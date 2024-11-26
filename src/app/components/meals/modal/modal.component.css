@@ -15,7 +15,12 @@
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 400px;
+    max-width: 600px;
     text-align: center;
   }
   
+
+  .results{
+    max-height: 600px;
+    overflow: scroll;
+  }

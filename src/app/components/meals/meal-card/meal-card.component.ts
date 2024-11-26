@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Meal, MealType } from '../../../interfaces/meals';
 import { ModalComponent } from '../modal/modal.component';
+import { Food } from '../../../interfaces/food';
 
 @Component({
   selector: 'app-meal-card',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalComponent],
+  imports: [CommonModule, ModalComponent],
   templateUrl: './meal-card.component.html',
   styleUrl: './meal-card.component.css'
 })
@@ -23,23 +23,25 @@ export class MealCardComponent {
     dessert: []
   };
 
-  @Output() foodAdded = new EventEmitter<void>();
-
   selectedTypeMeal: MealType | null = null;
 
   // Tipos válidos para las comidas
   mealTypes: MealType[] = ['breakfast', 'lunch', 'snack', 'dinner', 'dessert'];
 
   closeModal() {
-    this.selectedTypeMeal = null;
-  }
-
-  onFoodAdded(food: { food: string; gramQuantity: number }) {
-    console.log('Food added:', food);
-    // Aquí puedes llamar a `this.mealService` para actualizar la comida en el backend
+    this.selectedTypeMeal = null; // Cerrar modal
   }
 
   openModal(type: MealType) {
-    this.selectedTypeMeal = type;
+    this.selectedTypeMeal = type; // Abrir modal para el tipo de comida
+  }
+
+  // Recibir alimentos seleccionados y agregarlos a la comida
+  addFoodsToMeal(foods: Food[]) {
+    console.log("ALIMENTOS RECIBIDOS:", JSON.stringify(foods, null, 2));
+    if (this.selectedTypeMeal) {
+      this.meal[this.selectedTypeMeal].push(...foods);
+    }
+    this.closeModal();
   }
 }

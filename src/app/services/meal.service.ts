@@ -75,7 +75,7 @@ postMealToBackend(meal: Meal): Observable<Meal> {
   }
   
   // Agregar un alimento a una comida
-  addFoodToMeal(mealId: string | undefined, typeMeal: string, food: Food, grams: number): Observable<Meal> {
+  addFoodToMeal(mealId: string | undefined, typeMeal: string, foods: Food[]): Observable<Meal> {
     const currentMeals = this.mealsSubject.value;
     let mealToUpdate = currentMeals.find((meal) => meal.id === mealId);
   
@@ -88,20 +88,20 @@ postMealToBackend(meal: Meal): Observable<Meal> {
       return this.postMealToBackend(mealToUpdate).pipe(
         switchMap((newMeal) => {
           mealToUpdate = newMeal;
-          return this.updateMealWithFood(newMeal, typeMeal, food, grams);
+          return this.updateMealWithFood(newMeal, typeMeal, foods);
         })
       );
     } else {
-      return this.updateMealWithFood(mealToUpdate, typeMeal, food, grams);
+      return this.updateMealWithFood(mealToUpdate, typeMeal, foods);
     }
   }
 
-  private updateMealWithFood(meal: Meal, typeMeal: string, food: Food, grams: number): Observable<Meal> {
+  private updateMealWithFood(meal: Meal, typeMeal: string, foods: Food[]): Observable<Meal> {
     const updatedMeal: Meal = {
       ...meal,
       [typeMeal]: [
         ...(meal[typeMeal as keyof Meal] || []),
-        { ...food, gramQuantity: grams }
+        { ...foods}
       ]
     };
   

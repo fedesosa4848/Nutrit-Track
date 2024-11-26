@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="name-flag">
+    <div class="food-name-flag">
+      <p>{{ foodRecived.name }}</p>
+    </div>
+    <div class="cals-gr">
+      <p>{{ (foodRecived.caloriesPerGram * (customGrams || foodRecived.gramQuantity)).toFixed(2) }} kcal</p>
+      <span class="greyColor">
+        <p>{{ customGrams || foodRecived.gramQuantity }} gr.</p>
+      </span>
+    </div>
+  </div>
+
+  <!-- Checkbox visible en modo de añadir -->
+  <div *ngIf="addMode">
+    <label>
+      <input type="checkbox" [(ngModel)]="isChecked" (change)="toggleSelection()" />
+      Seleccionar
+    </label>
+  </div>
+
+  <!-- Input de gramos visible en modo añadir -->
+  <div *ngIf="addMode">
+    <label for="customGrams">Gramos:</label>
+    <input
+      id="customGrams"
+      type="number"
+      [(ngModel)]="customGrams"
+      min="1"
+    />
+  </div>
+
+  <!-- Botón para mostrar detalles -->
+  <button (click)="toggleDetails()">
+    {{ isDetailVisible ? 'Ocultar' : 'Ver Detalles' }}
+  </button>
+
+  <!-- Detalles del alimento -->
+  <div *ngIf="isDetailVisible" class="food-details">
+    <app-food-detail
+      [foodRecived]="foodRecived"
+      [addMode]="addMode"
+      [customGrams]="customGrams">
+    </app-food-detail>
+  </div>
+</div>

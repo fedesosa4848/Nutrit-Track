@@ -1,0 +1,61 @@
+<div class="container">
+  <!-- Información del alimento -->
+  <div class="info">
+    <div class="icon-container">
+      <img *ngIf="foodRecived.image" [src]="foodRecived.image" alt="{{ foodRecived.name }}" />
+      <p class="foodName">{{ foodRecived.name }}</p>
+    </div>
+  </div>
+
+  <!-- Información nutricional -->
+  <div class="number">
+    <div class="info-container">
+      <h2>Nutricional information for 
+        <span *ngIf="addMode">
+          {{ customGrams }} gr
+        </span>
+        <span *ngIf="!addMode">
+          <input 
+            class="gramQuantity" 
+            type="number" 
+            name="gramQuantity" 
+            [(ngModel)]="gramQuantity" 
+            min="0"
+          /> 
+          gr
+        </span>
+      </h2>
+    </div>
+
+    <!-- Macros -->
+    <div class="macros-container">
+      <div class="macro">
+        <span class="color">
+          <p class="detail">🔥 calories</p>
+        </span>
+        <p class="cals">{{ (foodRecived.caloriesPerGram * effectiveGrams).toFixed(2) }} kcal</p>
+      </div>
+
+      <div class="macro">
+        <span class="color">
+          <p class="detail">🍗 proteins</p>
+        </span>
+        <p class="cals">{{ (foodRecived.proteins * effectiveGrams).toFixed(2) }} gr</p>
+      </div>
+
+      <div class="macro">
+        <span class="color">
+          <p class="detail">🍞 carbs</p>
+        </span>
+        <p class="cals">{{ (foodRecived.carbohydrates * effectiveGrams).toFixed(2) }} gr</p>
+      </div>
+
+      <div class="macro">
+        <span class="color">
+          <p class="detail">🥑 fats</p>
+        </span>
+        <p class="cals">{{ (foodRecived.fats * effectiveGrams).toFixed(2) }} gr</p>
+      </div>
+    </div>
+  </div>
+</div>
