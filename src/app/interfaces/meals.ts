@@ -3,7 +3,7 @@ import { Food } from "./food";
 export type MealType = 'breakfast' | 'lunch' | 'snack' | 'dinner' | 'dessert';
 
 export interface Meal {
-  id: string;
+  id?: string;
   idUser: string;
   date: string;
   breakfast: Food[];

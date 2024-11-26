@@ -43,15 +43,17 @@ export class MyNutriTrackComponent implements OnInit, OnChanges {
     console.log('Fecha inicial:', this.dateRecivedFromDP); // Depuración
   }
 
-  // Método para cargar las comidas del usuario, filtrando por fecha
   loadMeals(): void {
     const userId = localStorage.getItem('userToken');
     if (userId && this.dateRecivedFromDP) {
       this.mealService.getMealsByUserId(userId, this.dateRecivedFromDP).subscribe((meals) => {
         if (meals.length === 0) {
-          // Si no hay comidas para la fecha, creamos una vacía
+          // Si no hay comidas para la fecha, creamos una vacía y la guardamos
           const emptyMeal = this.mealService.createEmptyMeal(this.dateRecivedFromDP, userId);
-          this.meals = [emptyMeal];
+          this.mealService.postMealToBackend(emptyMeal).subscribe((createdMeal) => {
+            // Después de que la comida vacía se guarda en el backend, la agregamos al array local
+            this.meals = [createdMeal];
+          });
         } else {
           this.meals = meals;
         }
@@ -60,6 +62,7 @@ export class MyNutriTrackComponent implements OnInit, OnChanges {
       console.log('Faltan datos para cargar las comidas: userId o date');
     }
   }
+  
   
 
   // Método que se llama cuando se recibe una nueva fecha del DatePicker

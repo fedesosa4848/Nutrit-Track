@@ -4,7 +4,6 @@ import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { createEmptyFood } from '../../../shared/factories';
 import { FoodDetailComponent } from '../food-detail/food-detail.component';
-
 @Component({
   selector: 'app-food-container',
   standalone: true,

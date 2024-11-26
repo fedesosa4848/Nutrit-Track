@@ -19,7 +19,7 @@
 
     <app-modal
     *ngIf="selectedTypeMeal"
-    [mealId]="meal.id"
+    [mealId]="meal.id!"
     [typeMeal]="selectedTypeMeal"
     (foodsSelected)="addFoodsToMeal($event)"
     (modalClosed)="closeModal()">

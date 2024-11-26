@@ -18,7 +18,6 @@ export class MealService {
 
   createEmptyMeal(date: string, userId: string): Meal {
     return {
-      id: '', // Esto puede ser generado por el backend o un UUID temporal
       idUser: userId,
       date: date,
       breakfast: [],
@@ -76,25 +75,36 @@ postMealToBackend(meal: Meal): Observable<Meal> {
   
   // Agregar un alimento a una comida
   addFoodToMeal(mealId: string | undefined, typeMeal: string, foods: Food[]): Observable<Meal> {
+    console.log('ID de comida:', mealId); // Depuración para ver el ID de la comida
+    console.log('Tipo de comida:', typeMeal); // Depuración para ver el tipo de comida (desayuno, almuerzo, etc.)
+    console.log('Alimentos a agregar:', foods); // Depuración para ver los alimentos que estamos recibiendo
+  
     const currentMeals = this.mealsSubject.value;
     let mealToUpdate = currentMeals.find((meal) => meal.id === mealId);
   
     if (!mealToUpdate) {
+      console.error('Comida no encontrada');
       throw new Error('Meal not found');
     }
   
+    console.log('Comida encontrada:', mealToUpdate); // Depuración para ver la comida encontrada
+  
     // Si la comida no tiene ID, primero la guardamos en el backend
     if (!mealToUpdate.id) {
+      console.log('La comida no tiene ID, guardando en backend...');
       return this.postMealToBackend(mealToUpdate).pipe(
         switchMap((newMeal) => {
+          console.log('Comida guardada en backend:', newMeal); // Depuración para ver la comida guardada en el backend
           mealToUpdate = newMeal;
           return this.updateMealWithFood(newMeal, typeMeal, foods);
         })
       );
     } else {
+      console.log('Comida con ID encontrado, actualizando con alimentos...');
       return this.updateMealWithFood(mealToUpdate, typeMeal, foods);
     }
   }
+  
 
   private updateMealWithFood(meal: Meal, typeMeal: string, foods: Food[]): Observable<Meal> {
     const updatedMeal: Meal = {
@@ -192,61 +202,4 @@ postMealToBackend(meal: Meal): Observable<Meal> {
   }
   
 
-  // Helper: Obtener la comida actualizada con el alimento agregado
-  // private getUpdatedMeal(mealId: string, food: Food, grams: number): Meal {
-  //   const meals = this.mealsSubject.getValue();
-  //   const meal = meals.find(m => m.id === mealId);
-
-  //   if (!meal) {
-  //     throw new Error('Meal not found');
-  //   }
-
-  //   const newFood = {
-  //     foodId: food.id,
-  //     name: food.name,
-  //     caloriesPerGram: food.caloriesPerGram,
-  //     grams: grams,
-  //   };
-
-  //   meal.foods.push(newFood); // Agregamos el nuevo alimento a la comida
-  //   return meal;
-  // }
-
-  // Helper: Eliminar un alimento de la comida
-//   private removeFood(mealId: string, foodId: number): Meal {
-//     const meals = this.mealsSubject.getValue();
-//     const meal = meals.find(m => m.id === mealId);
-
-//     if (!meal) {
-//       throw new Error('Meal not found');
-//     }
-
-//     meal.foods = meal.foods.filter(food => food.foodId !== foodId); // Eliminamos el alimento
-//     return meal;
-//   }
-
-//   // Helper: Modificar la cantidad de gramos de un alimento en la comida
-//   private modifyFoodQuantity(mealId: number, foodId: number, newGrams: number): Meal {
-//     const meals = this.mealsSubject.getValue();
-//     const meal = meals.find(m => m.id === mealId);
-
-//     if (!meal) {
-//       throw new Error('Meal not found');
-//     }
-
-//     const foodToModify = meal.foods.find(food => food.foodId === foodId);
-
-//     if (!foodToModify) {
-//       throw new Error('Food not found');
-//     }
-
-//     foodToModify.grams = newGrams; // Modificamos los gramos del alimento
-//     return meal;
-//   }
-
-//   // Exponer las comidas como un observable
-//   getMeals(): Observable<Meal[]> {
-//     return this.meals$;
-//   }
-// 
 }
