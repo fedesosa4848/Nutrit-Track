@@ -13,13 +13,14 @@ import { createEmptyMeal } from '../../shared/factories';
 })
 export class MyNutriTrackComponent implements OnInit, OnChanges {
   meals: Meal[] = [];
-  
+  comidas:Meal[] = [];
   @Input()
   dateRecivedFromDP: string = ''; // Fecha seleccionada o inicial
 
   constructor(private mealService: MealService) {}
 
   ngOnInit(): void {
+   
     this.initializeDate(); // Inicializa la fecha antes de cargar las comidas
     this.loadMeals(); // Cargar las comidas cuando el componente se inicializa
   }

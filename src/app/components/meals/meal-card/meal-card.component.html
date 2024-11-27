@@ -7,7 +7,23 @@
         <h4>{{ type | titlecase }}</h4>
         <div *ngIf="meal && meal[type] && meal[type].length > 0; else noFoods">
           <div *ngFor="let food of meal[type]">
+            <!-- Mostrar el nombre del alimento y su cantidad -->
             {{ food.name }} ({{ food.gramQuantity }}g)
+            <button (click)="startEditingFood(type, food.id)">Editar</button>
+            <button (click)="removeFood(type, food.id)">Eliminar</button>
+
+            <!-- Input de edición solo si está en modo edición -->
+            <div *ngIf="editingFoodId === food.id">
+              <input
+                type="number"
+                [(ngModel)]="newGramQuantity"
+                [min]="10"
+                [max]="1000"
+                (blur)="cancelEditing()"
+              />
+              <button (click)="updateFoodQuantity(type, food.id)">Guardar</button>
+              <button (click)="cancelEditing()">Cancelar</button>
+            </div>
           </div>
         </div>
         <ng-template #noFoods>
@@ -18,11 +34,12 @@
     </div>
 
     <app-modal
-    *ngIf="selectedTypeMeal"
-    [mealId]="meal.id!"
-    [typeMeal]="selectedTypeMeal"
-    (foodsSelected)="addFoodsToMeal($event)"
-    (modalClosed)="closeModal()">
-  </app-modal>
+      *ngIf="selectedTypeMeal"
+      [mealId]="meal.id!"
+      [typeMeal]="selectedTypeMeal"
+      [comida]="meal"
+      (modalClosed)="closeModal()"
+    >
+    </app-modal>
   </div>
 </div>
