@@ -2,7 +2,18 @@
     <app-date-picker (datePickedEmitter)="dateRecived($event)"></app-date-picker>
 </div>
 
-<div class="meal-container">
-    <p>Comidas</p>
-    <app-meal-list [meals]="meals!"></app-meal-list>
+<div class="parent">
+    <div class="div1">
+        <p>Comidas</p>
+        <app-meal-list [meals]="meals!"></app-meal-list>
+    </div>
+    <div class="div2">
+        <h2>Aca va el chart</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam cumque non ratione at eveniet quasi tempore fuga, dolorem cupiditate laborum. Voluptatibus rerum, natus exercitationem reiciendis maiores optio minima accusantium velit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis earum error non odio id voluptate nisi consectetur repellat perferendis consequuntur dolorum sit enim, doloribus, facilis, odit accusantium. Architecto, itaque rerum.</p>
+    </div>
+    <div class="div3">
+        <h3>Aca va el resultado del dia con un mensaje </h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati alias consectetur molestiae velit! Rerum quasi, voluptatem unde quod laboriosam enim doloremque optio, explicabo aliquam sapiente assumenda quidem illo minima fugiat.</p>
+    </div>
+    
 </div>

@@ -30,6 +30,7 @@ export class MyNutriTrackComponent implements OnInit, OnChanges {
     if (changes['dateRecivedFromDP']) {
       this.loadMeals();
     }
+
   }
 
   // Método para inicializar la fecha con un valor válido

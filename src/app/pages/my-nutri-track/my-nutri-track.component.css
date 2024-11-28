@@ -1,162 +1,39 @@
-.container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh; /* Ajustamos para que el contenedor tenga una altura mínima de la pantalla */
-    justify-content: space-between;
-    overflow: hidden;
-}
- 
-.meals,
-.graph {
-    flex: 1;
-    min-width: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    margin: 20px;
-    height: auto;
-}
- 
-.graph {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 50px;
-    order: 1; /* Cambiamos el orden para que .graph esté a la izquierda */
-}
- 
-.meals {
-    display: flex;
-    flex-direction: column; /* Permite que los elementos internos se apilen verticalmente */
-    align-items: stretch;
-    order: 2; /* Cambiamos el orden para que .meals esté a la derecha */
-    margin-top: 80px;
-    overflow: visible; /* Permite que los elementos dentro de .meals se expandan */
-}
- 
-.add-food-mode {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(3px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
- 
-.container-add-food {
-    width: 600px;
-    background: #f3f3f3;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2), 0px 8px 32px rgba(0, 0, 0, 0.15);
-}
- 
-.add-controls {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
- 
-.btn-add {
-    padding: 8px 16px;
-    cursor: pointer;
-    margin: 10px;
-    border: none;
-    background-color: #66BB6A;
-    color: white;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
- 
-.input-quantity {
-    width: 60px;
-    padding: 8px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
- 
-input[type="number"] {
-    border-radius: 5px;
-    padding: 8px;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
- 
-input[type="number"]:focus {
-    border-color: #66BB6A;
-    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
-}
- 
-.food-list {
+.parent {
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr; /* Ajusté las proporciones de las columnas */
+    grid-template-rows: auto 1fr auto;  /* Que las filas se ajusten al contenido */
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
     margin-top: 20px;
-    max-height: 300px;
-    overflow-y: auto;
-    width: 100%;
+    padding: 20px;
 }
- 
-/* Media query para pantallas pequeñas */
-@media (max-width: 800px) {
-    .container {
-        flex-direction: column; /* Cambia a columna solo en pantallas pequeñas */
-        height: auto;
-        overflow-y: auto;
-    }
- 
-    .graph {
-        order: 1; /* Asegura que .graph aparezca primero en pantallas pequeñas */
-        width: 100%;
-        padding: 20px;
-        height: 50vh;
-        margin-top: 10px;
-    }
- 
-    .meals {
-        order: 2;
-        width: 100%;
-        margin: 10px 0;
-    }
- 
-    .container-add-food {
-        width: 90%;
-        max-width: 600px;
-        padding: 15px;
-    }
- 
-    .add-controls {
-        flex-direction: column;
-        gap: 5px;
-    }
- 
-    .btn-add {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-    }
- 
-    .input-quantity {
-        width: 50px;
-    }
- 
-    .food-list {
-        max-height: 200px;
-    }
+
+.div1 { 
+    grid-area: 1 / 1 / 2 / 3; /* Ocupa dos columnas */
+    background-color: aquamarine;
+    padding: 20px;
+    border-radius: 8px;
 }
- 
-/* Estilo para elementos expansibles dentro de .meals */
-.expanding-element {
-    transition: max-height 0.3s ease;
-    max-height: none;
-    overflow: visible;
+
+.div2 { 
+    grid-area: 1 / 3 / 2 / 4; 
+    background-color: blueviolet;
+    padding: 20px;
+    border-radius: 8px;
 }
- 
+
+.div3 { 
+    grid-area: 2 / 1 / 3 / 4; /* Esto ocupa toda la última fila */
+    background-color: brown;
+    padding: 20px;
+    border-radius: 8px;
+}
+.div1, .div2, .div3 {
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h2, h3 {
+    color: white; /* Para asegurar que el texto se vea bien con los fondos oscuros */
+}

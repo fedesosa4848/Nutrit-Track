@@ -1,3 +1,17 @@
+:root{
+    --pakistan-green: #10451dff;
+    --dartmouth-green: #155d27ff;
+    --dark-spring-green: #1a7431ff;
+    --forest-green: #208b3aff;
+    --pigment-green: #25a244ff;
+    --dark-pastel-green: #2dc653ff;
+    --malachite: #4ad66dff;
+    --light-green: #6ede8aff;
+    --celadon: #92e6a7ff;
+    --celadon-2: #b7efc5ff;
+    --creamy-white: #faf3dd; 
+}
+
 *{
     margin: 0;
     padding: 0;
