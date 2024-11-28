@@ -1,0 +1,64 @@
+/* Estilo del modal */
+dialog {
+  width: 500px; /* Aumento el tamaño del modal */
+  max-width: 90%; /* Para que sea responsive y no se desborde en pantallas pequeñas */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: fixed; /* Para que se quede fijo en la pantalla */
+  top: 50%; /* Posición vertical centrada */
+  left: 50%; /* Posición horizontal centrada */
+  transform: translate(-50%, -50%); /* Centra exactamente el modal */
+  background-color: #fff;
+  z-index: 1000; /* Asegura que el modal se superponga a otros elementos */
+}
+
+/* Botón de cerrar */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #208b3a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #155d27;
+}
+
+
+
+/* Estilo para el contenedor minimizado */
+.weather-minimized {
+  width: 100%;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.weather-minimized h4 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.weather-minimized p {
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+/* Estilo adicional para el fondo sombreado cuando el modal está abierto */
+body.dialog-open { 
+  overflow: hidden; /* Desactiva el scroll cuando el modal está abierto */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro (0.8 opacidad) */
+  
+}

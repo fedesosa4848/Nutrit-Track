@@ -1,7 +1,5 @@
 <div class="meal-info">
   <div *ngIf="meal">
-    <h3>{{ meal.date }}</h3>
-
     <div class="foods">
       <div *ngFor="let type of mealTypes">
         <h4>{{ type | titlecase }}</h4>

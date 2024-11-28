@@ -1,26 +1,40 @@
-<body>
+<div class="englobador">
+  <!-- Div que muestra el modal cuando está abierto -->
+  <div class="weather" [class.closed]="isWeatherModalClosed">
+    <ng-container *ngIf="!isWeatherModalClosed">
+      <app-weathemodal (close)="closeWeatherModal()" (weatherEmitter)="updateWeather($event)"></app-weathemodal>
+    </ng-container>
 
-    <div class="container">
-        <div class="texto">
-            <h1>
-                Your
-                <span class="color">
-                    life <br />
-                    change <br> journey</span>, <br />
-                now at <br />
-                the reach <br />
-                of your <span class="color">hand</span>. <br />
-            </h1>
-            <p>
-                Welcome to a healthier lifestyle!
-                Set your goals and create a plan. <br> Each day is a new
-                opportunity. With our app, tracking your calories <br>
-                is easy and motivating.
-            </p>
-        </div>
+    <!-- Div fijo que se muestra cuando el modal está cerrado -->
+    <ng-container *ngIf="isWeatherModalClosed && weather">
+      <div class="weather-closed">
+        <h4>Clima Actual</h4>
+        <p>
+          <strong>{{ weather.location }}</strong>: {{ weather.temperature }}°C - {{ weather.description }}
+        </p>
+        <button class="close-button" (click)="isWeatherModalClosed = false">Ver más</button>
+      </div>
+    </ng-container>
+  </div>
 
-        <a [routerLink]="['/register']" routerLinkActive="router-link-active">
-            <button class="comenzar">¡Start now!</button>
-        </a>
+  <div class="container">
+    <div class="texto">
+      <h1>
+        Your
+        <span class="color">life <br />change <br />journey</span>, <br />
+        now at <br />
+        the reach <br />
+        of your <span class="color">hand</span>.
+      </h1>
+      <p>
+        Welcome to a healthier lifestyle! Set your goals and create a plan. <br />
+        Each day is a new opportunity. With our app, tracking your calories <br />
+        is easy and motivating.
+      </p>
     </div>
-</body>
+
+    <a [routerLink]="['/register']">
+      <button class="comenzar">¡Start now!</button>
+    </a>
+  </div>
+</div>

@@ -1,15 +1,10 @@
 <!-- app.component.html -->
 <div class="wrapper">
-    <header>
-      <app-nav-bar></app-nav-bar> 
-    </header>
-    
-    <main class="main-content">
-      <router-outlet></router-outlet>
-    </main>
-    
-    <!-- <footer>
-      <app-footer></app-footer>
-    </footer> -->
-  </div>
-  
+  <header>
+    <app-nav-bar></app-nav-bar>  <!-- Este es tu componente de barra de navegación -->
+  </header>
+  <main class="main-content">
+    <!-- Aquí se cargan las rutas -->
+    <router-outlet></router-outlet>
+  </main>
+</div>

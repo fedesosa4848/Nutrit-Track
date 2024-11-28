@@ -3,7 +3,7 @@
 <header class="header">
   <ul>
     <li class="logo-item">
-      <a href="http://localhost:4200/alimentos"><img class="logo" src="https://github.com/faustofuertes/faustofuertes.github.io/blob/master/img/logoFinal.png?raw=true" alt="Logo"></a>
+      <a (click)="navigateToHome()"><img class="logo" src="https://github.com/faustofuertes/faustofuertes.github.io/blob/master/img/logoFinal.png?raw=true" alt="Logo"></a>
     </li>
     <li *ngIf="!isLoggedIn"><a (click)="navigateToHome()">Home</a></li>
     <li><a (click)="navigateToFoods()">Food</a></li>
@@ -22,3 +22,4 @@
       <a class="logout"><i class="fas fa-sign-out-alt"></i></a>
     </li>
   </ul>
+</header>

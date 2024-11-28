@@ -1,42 +1,39 @@
-body {
-    background-image: url('https://github.com/faustofuertes/faustofuertes.github.io/blob/master/img/fondo.png?raw=true');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+.englobador {
+    background-image: url('../../../../public/fondo.png');
+    background-size: cover; /* Esto hace que la imagen cubra todo el div */
+    background-position: center; /* Esto centra la imagen */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo con transparencia */
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     position: relative;
-    z-index: 1; /* Añadir z-index para asegurarte de que el body esté por debajo del nav bar */
-}
-
-.container {
+    z-index: 1;
+  }
+  
+  .container {
+    max-width: 90%;
     margin-left: 10%;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: flex-start;
     position: relative;
-    z-index: 2; /* Este z-index debe estar por encima del body, pero debajo del nav bar */
-}
-
-/* Asegúrate de que tu nav bar tenga un z-index alto */
-app-nav-bar {
-    position: relative; /* Asegúrate de que tenga un contexto de apilamiento */
-    z-index: 10; /* Este z-index debe ser mayor que el de body y container */
-}
-
-.texto h1 {
+    z-index: 2;
+  }
+  
+  .texto h1 {
     font-size: 100px;
     margin-bottom: 10px;
     font-weight: 600;
-}
-
-.texto p {
+  }
+  
+  .texto p {
     font-size: 20px;
-}
-
-.container button {
+  }
+  
+  .container button {
     height: 100px;
     width: 250px;
     background-color: #66BB6A;
@@ -50,90 +47,131 @@ app-nav-bar {
     margin-left: 100px;
     margin-bottom: 5%;
     transition: background-color 0.5s, color 0.5s, transform 0.3s;
-}
-
-.container button:hover {
+  }
+  
+  .container button:hover {
     background-color: white;
     border: 2px solid #66BB6A;
     color: #66BB6A;
     transform: scale(1.05);
-}
-
-.color {
+  }
+  
+  .color {
     color: #66BB6A;
-}
-
-@media(max-width:1520px){
+  }
+  
+  @media(max-width:1520px){
     .texto h1 {
-        font-size: 75px;
-        margin-top: 30px;
-        font-weight: 600;
+      font-size: 75px;
+      margin-top: 30px;
+      font-weight: 600;
     }
-
+  
     .texto p {
-        font-size: 16px;
+      font-size: 16px;
     }
-}
-
-
-
-@media (max-width: 1200px) {
+  }
+  
+  @media (max-width: 1200px) {
     .container {
-        flex-direction: column; 
-        align-items: flex-start; 
-        margin-left: 5%; 
-        padding: 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 5%;
+      padding: 20px;
     }
-
+  
     .texto h1 {
-        font-size: 60px;
-        line-height: 1.2;
+      font-size: 60px;
+      line-height: 1.2;
     }
-
+  
     .container button {
-        width: 200px; 
-        height: 80px; 
-        font-size: 20px;
-        margin-left: 0;
+      width: 200px;
+      height: 80px;
+      font-size: 20px;
+      margin-left: 0;
     }
-}
-
-@media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
     .container {
-        margin-left: 0;
-        padding: 10px;
-        text-align: center; 
+      margin-left: 0;
+      padding: 10px;
+      text-align: center;
     }
-
+  
     .texto h1 {
-        font-size: 50px;
-        margin: 20px 0;
+      font-size: 50px;
+      margin: 20px 0;
     }
-
+  
     .texto p {
-        font-size: 14px;
-        line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.5;
     }
-
+  
     .container button {
-        width: 180px;
-        height: 60px;
-        font-size: 18px;
+      width: 180px;
+      height: 60px;
+      font-size: 18px;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .texto h1 {
-        font-size: 40px; 
+      font-size: 40px;
     }
-
+  
     .texto p {
-        font-size: 12px;
+      font-size: 12px;
     }
-
+  
     .container button {
-        width: 150px;
-        height: 50px;
-        font-size: 16px;
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
     }
-}
+  }
+  
+  .weather {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Cuando el modal está cerrado, se convierte en un div fijo */
+  .weather.closed .weather-closed {
+    position: absolute;
+    top: 20px;  /* Ajusta esta propiedad según sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50vw;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+    z-index: 3;  /* Asegura que el clima esté por encima del contenedor */
+  }
+  
+  
+  /* Ocultar el modal si está cerrado */
+  .weather.closed app-weathemodal {
+    display: none;
+  }
+  
+  .close-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #208b3a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #155d27;
+  }
+  

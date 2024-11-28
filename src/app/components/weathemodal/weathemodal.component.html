@@ -1,0 +1,22 @@
+<!-- Modal de clima -->
+<dialog #weatherDialog>
+    <h3>Current Weather</h3>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    <p *ngIf="weather">
+      <strong>{{ weather.location }}</strong>: {{ weather.temperature }}°C - {{ weather.description }}
+    </p>
+    <p *ngIf="weather?.message">{{ weather!.message }}</p> <!-- Mostrar el mensaje aquí -->
+
+    <button (click)="closeDialog()">Cerrar</button>
+  </dialog>
+  
+  <!-- Contenido minimizado cuando el modal está cerrado -->
+  <div class="weather-minimized" *ngIf="!isDialogOpen && weather">
+    <h4>Clima Actual</h4>
+    <p>
+      <strong>{{ weather.location }}</strong>: {{ weather.temperature }}°C - {{ weather.description }}
+    </p>
+
+    <button class="close-button" (click)="openDialog()">Ver más</button>
+  </div>
+  
