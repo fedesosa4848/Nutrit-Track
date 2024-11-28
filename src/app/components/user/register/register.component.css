@@ -1,16 +1,5 @@
-body {
-    background-image: url('/src/assets/images/FONDO-LANDING.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
 .register-container {
-    max-width: 500px;
+    max-width: 800px;
     margin: 5% auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
@@ -24,6 +13,20 @@ body {
     color: #66BB6A;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* By default, single column for mobile */
+    gap: 20px;
+}
+
+.form-section h3 {
+    font-size: 22px;
+    color: #66BB6A;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .form-group {
@@ -86,7 +89,7 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition:0.5s;
+    transition: 0.5s;
     border: 2px solid transparent;
 }
 
@@ -96,3 +99,9 @@ body {
     border: 2px solid #66BB6A;
 }
 
+/* Media query for desktop */
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns for desktops */
+    }
+}

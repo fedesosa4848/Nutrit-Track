@@ -1,77 +1,79 @@
 <div class="register-container">
     <h2>Registration Form</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">First Name:</label>
-            <input type="text" id="name" formControlName="firstName" />
-        </div>
+        <!-- Grid for form sections -->
+        <div class="form-grid">
+            <!-- First Section: Personal Information -->
+            <div class="form-section">
+                <h3>Personal Information</h3>
+                <div class="form-group">
+                    <label for="name">First Name:</label>
+                    <input type="text" id="name" formControlName="firstName" />
+                </div>
+                <div class="form-group">
+                    <label for="surname">Last Name:</label>
+                    <input type="text" id="surname" formControlName="lastName" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" formControlName="email" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="password" formControlName="password" />
+                        <button type="button" (click)="togglePassword()">Show/Hide</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" formControlName="age" />
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="surname">Last Name:</label>
-            <input type="text" id="surname" formControlName="lastName" />
-        </div>
-
-        <div class="form-group">
-            <label for="age">Age:</label>
-            <input type="number" id="age" formControlName="age" />
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" formControlName="email" />
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <div class="password-container">
-                <input type="password" id="password" formControlName="password" />
-                <button type="button" (click)="togglePassword()">Show/Hide</button>
+            <!-- Second Section: Physical Information -->
+            <div class="form-section">
+                <h3>Physical Information</h3>
+                <div class="form-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" formControlName="weight" />
+                </div>
+                <div class="form-group">
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" formControlName="height" />
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" formControlName="gender">
+                        <option value="">Select...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="goal">Fitness Goal:</label>
+                    <select id="goal" formControlName="goal">
+                        <option value="">Select...</option>
+                        <option value="bulking">Bulking</option>
+                        <option value="deficit">Deficit</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="activityLevel">Activity Level:</label>
+                    <select id="activityLevel" formControlName="activityLevel">
+                        <option value="">Select...</option>
+                        <option value="sedentary">Sedentary</option>
+                        <option value="light">Light</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="active">Active</option>
+                        <option value="very active">Very Active</option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="weight">Weight (kg):</label>
-            <input type="number" id="weight" formControlName="weight" />
-        </div>
-
-        <div class="form-group">
-            <label for="height">Height (cm):</label>
-            <input type="number" id="height" formControlName="height" />
-        </div>
-
-        <div class="form-group">
-            <label for="gender">Gender:</label>
-            <select id="gender" formControlName="gender">
-                <option value="">Select...</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
-
-        <!-- Nuevo campo: Goal -->
-        <div class="form-group">
-            <label for="goal">Fitness Goal:</label>
-            <select id="goal" formControlName="goal">
-                <option value="">Select...</option>
-                <option value="bulking">Bulking</option>
-                <option value="deficit">Deficit</option>
-                <option value="maintenance">Maintenance</option>
-            </select>
-        </div>
-
-        <!-- Nuevo campo: Activity Level -->
-        <div class="form-group">
-            <label for="activityLevel">Activity Level:</label>
-            <select id="activityLevel" formControlName="activityLevel">
-                <option value="">Select...</option>
-                <option value="sedentary">Sedentary</option>
-                <option value="light">Light</option>
-                <option value="moderate">Moderate</option>
-                <option value="active">Active</option>
-                <option value="very active">Very Active</option>
-            </select>
-        </div>
-
+        <!-- Submit Button -->
         <button class="register-button" type="submit">Register</button>
     </form>
 </div>
