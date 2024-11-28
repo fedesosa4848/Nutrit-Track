@@ -187,6 +187,8 @@ createEmptyMeal(date: string, userId: string): Meal {
   updateFoodQuantity(meal: Meal, typeMeal: MealType, foodId: string, newQuantity: number): Observable<Meal> {
     const updatedFoods = (meal[typeMeal as keyof Meal] as Food[]).map(food => {
       if (food.id === foodId) {
+        console.log('Actualizando cantidad de gramos:', { foodId, newQuantity }); // Log antes de actualizar
+
         return { ...food, gramQuantity: newQuantity };
       }
       return food;
@@ -196,6 +198,9 @@ createEmptyMeal(date: string, userId: string): Meal {
       ...meal,
       [typeMeal]: updatedFoods
     };
+
+    console.log('Enviando solicitud PUT al backend:', updatedMeal);
+
   
     // Enviar la actualización al backend
     return this.http.put<Meal>(`${this.API_URL}/${meal.id}`, updatedMeal).pipe(
