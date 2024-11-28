@@ -86,21 +86,27 @@ export class WeathemodalComponent implements OnInit, AfterViewInit {
   }
 
    // Función para obtener el mensaje basado en la temperatura
-   getWeatherMessage(temperature: number): string {
-    if (temperature <= 5) {
-      return this.getRandomMessage(weatherMessages.cold);
-    } else if (temperature <= 10) {
-      return this.getRandomMessage(weatherMessages.cool);
-    } else if (temperature <= 20) {
-      return this.getRandomMessage(weatherMessages.warm);
-    } else {
-      return this.getRandomMessage(weatherMessages.hot);
-    }
+   // Función para obtener el mensaje basado en la temperatura
+getWeatherMessage(temperature: number): string {
+  if (temperature <= 5) {
+    const { message, emoji } = this.getRandomMessage(weatherMessages.cold);
+    return `${message} ${emoji}`;
+  } else if (temperature <= 10) {
+    const { message, emoji } = this.getRandomMessage(weatherMessages.cool);
+    return `${message} ${emoji}`;
+  } else if (temperature <= 20) {
+    const { message, emoji } = this.getRandomMessage(weatherMessages.warm);
+    return `${message} ${emoji}`;
+  } else {
+    const { message, emoji } = this.getRandomMessage(weatherMessages.hot);
+    return `${message} ${emoji}`;
   }
+}
 
-  // Función para obtener un mensaje aleatorio de un array
-  getRandomMessage(messages: string[]): string {
-    const randomIndex = Math.floor(Math.random() * messages.length);
-    return messages[randomIndex];
-  }
+// Función para obtener un mensaje aleatorio de un array
+getRandomMessage(messages: { message: string, emoji: string }[]): { message: string, emoji: string } {
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  return messages[randomIndex];
+}
+
 }
