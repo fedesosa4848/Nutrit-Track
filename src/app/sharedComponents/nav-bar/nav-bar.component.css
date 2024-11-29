@@ -1,190 +1,118 @@
+/* Contenedor general del header */
 .header {
-    max-width: 100vw;
-    height: 80px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    position: sticky;
-    border: 2px solid black;
+    background: linear-gradient(to bottom, var(--celadon-2), white);
 }
-
-.header ul {
+  
+  /* Contenedor de la navegación */
+  .nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* Distribuye el logo y la navegación */
     align-items: center;
+    padding: 20px;
     width: 100%;
-    height: 100%;
-}
-
-.header li {
+  }
+  
+  /* Logo alineado a la izquierda */
+  /* Estilo específico para el enlace del logo */
+.logo a {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-left: 20px;
-    list-style-type: none;
-    height: 100%;
-    transition: .1s;
-}
-
-.header li:hover {
-    color: #66BB6A;
-}
-
-.header li:last-child {
-    margin-right: 5%;
-    border: none;
-}
-
-.header li:first-child {
-    display: flex;
-    align-self: flex-start;
-}
-
-.logo {
-    height: 110px;
-}
-
-
-.logo-item {
-    margin-right: auto;
-}
-
-.btn-empezar {
-    padding: 10px;
-    color: white;
-    background-color: #66BB6A;
-    border: none;
+    text-decoration: none; /* Sin subrayado */
+    padding: 0; /* Eliminar padding */
+    background-color: transparent; /* Sin fondo */
+    border: none; /* Sin borde */
     cursor: pointer;
-    font-weight: 600;
-    font-size: 18px;
-    border-radius: 8px;
-    height: 55px;
-    width: 165px;
-    margin: 15px;
-    transition: background-color 0.5s, color 0.5s, transform 0.3s;
-    position: relative;
-    z-index: 2;
-}
-
-.btn-empezar:hover {
-    background-color: white;
-    border: 2px solid #66BB6A;
-    color: #66BB6A;
-    transform: scale(1.05);
-}
-
-.header a {
-    margin-right: 15px;
-    cursor: pointer;
-    transition: .3s;
-    text-decoration: none;
-    color: black;
-}
-
-.header a:hover {
-    color: #66BB6A;
-}
-
-.btn-nutriTrack {
-    margin-left: 40px;
-    border: none;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2), 0px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-right: 50px;
-    position: relative;
-    font-size: 30px;
-    font-weight: 500;
-    height: 52px;
-    border-radius: 10px;
-    padding: 0 16px;
-    background-image: linear-gradient(155deg, #393540, #27232f);
-    transition: .5s;
-}
-
-.btn-nutriTrack span {
-    animation-name: shine;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    background-image: linear-gradient(to right, #66BB6A 20%, white 40%, #66BB6A 60%, #66BB6A 80%);
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-size: 200%;
-    background-position: 0%;
-}
-
-.fa-user-circle {
-    font-size: 25px;
+    margin-left: 30px;
+  }
+  
+  /* Imagen del logo */
+  .logo-img {
+    height: 50px; /* Ajusta la altura según lo que necesites */
+    width: auto;  /* Mantiene la proporción del logo */
+    transition: transform 0.2s ease;
+  }
+  
+  .logo-img:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+  }
+  
+  
+  /* Lista de navegación alineada a la derecha */
+  ul {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-@keyframes shine {
-    from {
-        background-position: 0%;
-    }
-
-    to {
-        background-position: 200%;
-    }
-}
-
-/* Estilos para el menú desplegable de la cuenta */
-.account-menu {
-    display: none;
-    /* Oculta el menú por defecto */
-    position: absolute;
-    /* Asegúrate de que el menú esté posicionado correctamente */
-    background-color: white;
-    /* Fondo del menú */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra */
-    z-index: 100;
-    /* Asegúrate de que esté por encima de otros elementos */
-}
-
-.account-menu ul {
+    list-style: none;
     padding: 0;
     margin: 0;
-}
-
-.account-menu li {
-    list-style: none;
-    /* Sin viñetas */
-    padding: 10px;
-    /* Espaciado interno */
-}
-
-.account-menu li a {
-    color: black;
-    /* Color de texto */
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Estilo de los enlaces de navegación */
+  a {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    min-width: 120px;
     text-decoration: none;
-    /* Sin subrayado */
-    display: block;
-    /* Asegúrate de que toda el área sea clickeable */
-}
-
-.account-menu li a:hover {
-    background-color: #f0f0f0;
-    /* Color al pasar el mouse */
-}
-
-.logout{
-    font-size: 24px;
-}
-
-
-@media (max-width: 780px ){
-
-    .btn-nutriTrack{
-        font-size: 16px;
+    border-radius: 1rem;
+    background-color: var(--dark-pastel-green);
+    color: var(--creamy-white);
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  /* Hover con zoom y cambio de color */
+  a:hover {
+    background-color: var(--malachite); /* Fondo más claro */
+    color: var(--white);                /* Texto blanco */
+    transform: scale(1.1);              /* Zoom al pasar el cursor */
+  }
+  
+  /* Botón Sign In */
+  .btn-signin {
+    background-color: var(--dark-blue);
+  }
+  
+  .btn-signin:hover {
+    background-color: var(--medium-blue);
+  }
+  
+  /* Botón Register */
+  .btn-register {
+    background-color: var(--deep-orange);
+  }
+  
+  .btn-register:hover {
+    background-color: var(--light-orange);
+  }
+  
+  /* Botón Logout */
+  .btn-logout {
+    background-color: var(--blood-red);
+  }
+  
+  .btn-logout:hover {
+    background-color: var(--light-red);
+  }
+  
+  /* Alinear en el centro y adaptar para pantallas pequeñas */
+  @media screen and (max-width: 700px) {
+    .nav {
+      flex-direction: column;
+      align-items: center;
     }
-}
-
-
-@media (max-width: 600px ){
-
-    .btn-nutriTrack{
-        font-size: 16px;
+  
+    ul {
+      flex-direction: column; /* Cambiar a columna */
+      align-items: center;    /* Centrar los botones */
+      width: 100%;
     }
-}
+  
+    a {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      text-align: center;
+    }
+  }
+  

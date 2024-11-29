@@ -1,3 +1,8 @@
+.container{
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
 .food-container {
     width: 50%;
     margin: auto;

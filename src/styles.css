@@ -1,4 +1,4 @@
-:root{
+:root {
     --pakistan-green: #10451dff;
     --dartmouth-green: #155d27ff;
     --dark-spring-green: #1a7431ff;
@@ -9,7 +9,15 @@
     --light-green: #6ede8aff;
     --celadon: #92e6a7ff;
     --celadon-2: #b7efc5ff;
-    --creamy-white: #faf3dd; 
+    --creamy-white: #faf3dd;
+    
+    /* Colores adicionales que no estaban en el :root */
+    --light-red: #ff6666; /* Un tono rojo suave */
+    --blood-red: #8b0000; /* Rojo oscuro */
+    --deep-orange: #ff4500; /* Naranja profundo */
+    --medium-blue: #4682b4; /* Azul medio */
+    --dark-blue: #00008b; /* Azul oscuro */
+    --light-orange: #ffa07a; /* Naranja claro */
 }
 
 *{

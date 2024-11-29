@@ -133,34 +133,38 @@
     }
   }
   
+  /* Estilos para el weather */
   .weather {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    transition: height 0.3s ease, visibility 0.3s ease;
+    overflow: hidden;
   }
   
-  /* Cuando el modal está cerrado, se convierte en un div fijo */
-  .weather.closed .weather-closed {
-    position: absolute;
-    top: 20px;  /* Ajusta esta propiedad según sea necesario */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50vw;
+  .weather.closed {
+    height: auto;
+    visibility: visible;
+  }
+  
+  /* Estilo del contenido cuando el modal está cerrado */
+  .weather-closed {
+    width: 100%;
     padding: 20px;
     background-color: transparent;
     border-radius: 10px;
-    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
     text-align: center;
-    z-index: 3;  /* Asegura que el clima esté por encima del contenedor */
+    transition: all 0.3s ease;
   }
   
-  
-  /* Ocultar el modal si está cerrado */
+  /* Modal oculto cuando está cerrado */
   .weather.closed app-weathemodal {
     display: none;
   }
   
+  /* Botón Ver más */
   .close-button {
     margin-top: 15px;
     padding: 10px 20px;
@@ -173,5 +177,12 @@
   
   .close-button:hover {
     background-color: #155d27;
+  }
+  
+  /* Ajustes para móviles */
+  @media (max-width: 768px) {
+    .weather-closed {
+      width: 90%;
+    }
   }
   

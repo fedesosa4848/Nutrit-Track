@@ -4,10 +4,11 @@ import { Meal } from '../../interfaces/meals';
 import { MealService } from '../../services/meal.service';
 import { DatePickerComponent } from "../../components/meals/date-picker/date-picker.component";
 import { createEmptyMeal } from '../../shared/factories';
+import { MealChartComponent } from "../../components/meals/meal-chart/meal-chart.component";
 @Component({
   selector: 'app-my-nutri-track',
   standalone: true,
-  imports: [MealListComponent, DatePickerComponent],
+  imports: [MealListComponent, DatePickerComponent, MealChartComponent],
   templateUrl: './my-nutri-track.component.html',
   styleUrl: './my-nutri-track.component.css'
 })
