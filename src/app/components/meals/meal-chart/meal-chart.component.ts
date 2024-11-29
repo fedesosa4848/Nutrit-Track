@@ -92,17 +92,17 @@ export class MealChartComponent  implements OnInit,OnChanges {
       theme: "dark2",
       colorSet: "customColorSet",
       backgroundColor: "transparent", // Esto hace que el fondo sea transparente
-
+  
       title: {
-        text: "Distribución de Macronutrientes"
+        text: "Macronutrient Distribution" // Traducción del título
       },
       data: [{
         type: "doughnut",
-        indexLabel: "{label}: {y}g",
+        indexLabel: "{label}: {y}g", // Mantiene el formato de índice para las etiquetas
         dataPoints: [
-          { y: this.totalProteins.toFixed(2), label: "Proteínas" },
-          { y: this.totalCarbs.toFixed(2), label: "Carbohidratos" },
-          { y: this.totalFats.toFixed(2), label: "Grasas" }
+          { y: this.totalProteins.toFixed(2), label: "Proteins" }, // Traducción de 'Proteínas'
+          { y: this.totalCarbs.toFixed(2), label: "Carbohydrates" }, // Traducción de 'Carbohidratos'
+          { y: this.totalFats.toFixed(2), label: "Fats" } // Traducción de 'Grasas'
         ]
       }]
     };
