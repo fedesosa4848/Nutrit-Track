@@ -34,7 +34,7 @@ export class LoginComponent {
           const userToken = localStorage.getItem('userToken')
           const loginDate = localStorage.getItem('loginDate');
           this.router.navigate(['/userProfile']); // Redirigir a la página protegida
-          if(userToken && loginDate)this._myMealsService.getMealsByUserId(userToken,loginDate).subscribe()
+          // if(userToken && loginDate)this._myMealsService.getMealsByUserId(userToken,loginDate).subscribe()
         } else {
           this.loginFailed = true; // Mostrar mensaje de error
         }

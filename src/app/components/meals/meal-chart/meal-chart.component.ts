@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, OnInit,SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CanvasJSAngularChartsModule, CanvasJS } from '@canvasjs/angular-charts';
-import { Meal,MealType } from '../../../interfaces/meals';
+import { Meal, MealType } from '../../../interfaces/meals';
 import { Food } from '../../../interfaces/food';
+
 CanvasJS.addColorSet("customColorSet", ["#ffcb06", "#ce1249", "#3a943c", "#7f3e83", "#812900", "#2078b6", "#df7f2e", "#e3e3e3"]);
 
 @Component({
@@ -9,10 +10,10 @@ CanvasJS.addColorSet("customColorSet", ["#ffcb06", "#ce1249", "#3a943c", "#7f3e8
   standalone: true,
   imports: [CanvasJSAngularChartsModule],
   templateUrl: './meal-chart.component.html',
-  styleUrl: './meal-chart.component.css'
+  styleUrls: ['./meal-chart.component.css']
 })
-export class MealChartComponent  implements OnInit,OnChanges {
-  @Input() meal: Meal[] | null = null;
+export class MealChartComponent implements OnInit, OnChanges {
+  @Input() meal: Meal | null = null; // Se recibe del componente padre
 
   totalCalories: number = 0;
   totalProteins: number = 0;
@@ -22,13 +23,13 @@ export class MealChartComponent  implements OnInit,OnChanges {
   chartOptions: any;
 
   ngOnInit(): void {
-    console.log("Comidas recibidas en el gráfico:", this.meal);
+    console.log("Comidas recibidas en el gráfico:", JSON.stringify(this.meal, null, 2));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['meal'] && this.meal) {
-      this.calculateTotalNutrients();
-      this.createChart();
+      this.calculateTotalNutrients(); // Actualiza los totales cuando cambie la comida
+      this.createChart(); // Re-crea el gráfico
     }
   }
 
@@ -38,34 +39,20 @@ export class MealChartComponent  implements OnInit,OnChanges {
     this.totalProteins = 0;
     this.totalCarbs = 0;
     this.totalFats = 0;
-  
-    // Tipos de comidas que vamos a recorrer
-    const mealTypes: MealType[] = ['breakfast', 'lunch', 'snack', 'dinner', 'dessert'];
-  
-    this.meal?.forEach(singleMeal => {
-      console.log(`\nComenzando el cálculo para la comida del día: ${singleMeal.date}`);
-  
+
+    if (this.meal) {
+      // Si solo hay una comida, la procesamos directamente
+      const mealTypes: MealType[] = ['breakfast', 'lunch', 'snack', 'dinner', 'dessert'];
+
       mealTypes.forEach(type => {
-        const foods = singleMeal[type as keyof Meal] as Food[] || [];
+        const foods = this.meal![type as keyof Meal] as Food[] || [];
         if (foods.length > 0) {
-          console.log(`\nTipo de comida: ${type}`);
-  
           foods.forEach(food => {
             const calories = food.caloriesPerGram * food.gramQuantity;
             const proteins = food.proteins * food.gramQuantity;
             const carbs = food.carbohydrates * food.gramQuantity;
             const fats = food.fats * food.gramQuantity;
-  
-            console.log(
-              `\nAlimento: ${food.name}\n` +
-              `  - Calorías por gramo: ${food.caloriesPerGram}\n` +
-              `  - Cantidad en gramos: ${food.gramQuantity}\n` +
-              `  - Calorías: ${calories.toFixed(2)}\n` +
-              `  - Proteínas: ${proteins.toFixed(2)}\n` +
-              `  - Carbohidratos: ${carbs.toFixed(2)}\n` +
-              `  - Grasas: ${fats.toFixed(2)}`
-            );
-  
+
             // Sumamos los valores al total
             this.totalCalories += calories;
             this.totalProteins += proteins;
@@ -74,17 +61,8 @@ export class MealChartComponent  implements OnInit,OnChanges {
           });
         }
       });
-    });
-  
-    // Depuración final de los totales
-    console.log(`\nTotales del día:`);
-    console.log(`  - Calorías totales: ${this.totalCalories.toFixed(2)}`);
-    console.log(`  - Proteínas totales: ${this.totalProteins.toFixed(2)}g`);
-    console.log(`  - Carbohidratos totales: ${this.totalCarbs.toFixed(2)}g`);
-    console.log(`  - Grasas totales: ${this.totalFats.toFixed(2)}g`);
+    }
   }
-  
-  
 
   createChart() {
     this.chartOptions = {
@@ -92,20 +70,19 @@ export class MealChartComponent  implements OnInit,OnChanges {
       theme: "dark2",
       colorSet: "customColorSet",
       backgroundColor: "transparent", // Esto hace que el fondo sea transparente
-  
+
       title: {
-        text: "Macronutrient Distribution" // Traducción del título
+        text: "Distribución de Macronutrientes" // Título del gráfico
       },
       data: [{
         type: "doughnut",
-        indexLabel: "{label}: {y}g", // Mantiene el formato de índice para las etiquetas
+        indexLabel: "{label}: {y}g", // Formato de índice para las etiquetas
         dataPoints: [
-          { y: this.totalProteins.toFixed(2), label: "Proteins" }, // Traducción de 'Proteínas'
-          { y: this.totalCarbs.toFixed(2), label: "Carbohydrates" }, // Traducción de 'Carbohidratos'
-          { y: this.totalFats.toFixed(2), label: "Fats" } // Traducción de 'Grasas'
+          { y: this.totalProteins.toFixed(2), label: "Proteínas" }, // Traducción de 'Proteínas'
+          { y: this.totalCarbs.toFixed(2), label: "Carbohidratos" }, // Traducción de 'Carbohidratos'
+          { y: this.totalFats.toFixed(2), label: "Grasas" } // Traducción de 'Grasas'
         ]
       }]
     };
   }
-  
 }
